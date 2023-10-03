@@ -28,22 +28,6 @@ public class Company{
         return "Employee " + employeeID + " was registered successfully.";
     }
 
-    public class ManagerEmployee extends Employee {
-        private String degree;
-
-        public ManagerEmployee(String ID, String name, double grossSalary, String degree) {
-            super(ID, name, grossSalary);
-            this.degree = degree;
-
-        }
-
-        @Override
-        public String toString() {
-            return degree + " " + getName() + "'s " + "gross salary is " + getGrossSalary() + " SEK per month.";
-        }
-
-    }
-
     public String printEmployee(String employeeID) {
         Employee e = employees.get(employeeID);
         if (e != null) {
