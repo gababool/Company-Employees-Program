@@ -17,7 +17,7 @@ public class Employee {
 
     @Override
     public String toString(){
-        return String.format("%s's gross salary is %d SEK per month", name, grossSalary);
+        return String.format("%s's gross salary is %f SEK per month", name, getgrossSalary());
     }
 
     @Override
@@ -33,7 +33,7 @@ public class Employee {
     }
 
     public double truncateSalary(double salary){
-        double truncatedSalary = (double)Math.round(salary*100)/100;
+        double truncatedSalary = (double)Math.floor(salary*100)/100;
         return truncatedSalary;
     }
 
@@ -46,7 +46,7 @@ public class Employee {
     }
 
     public double getgrossSalary() {
-        return grossSalary;
+        return truncateSalary(grossSalary);
     }
 
     public double getNetSalary() {
