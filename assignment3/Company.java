@@ -2,12 +2,12 @@ package assignment3;
 
 import java.util.HashMap;
 
-public class Company{
+public class Company {
 
     HashMap<String, Employee> employees = new HashMap<String, Employee>();
 
     public Company() {
-
+        // save
     }
 
     public double getNetSalary(String employeeID) {
