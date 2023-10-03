@@ -12,7 +12,32 @@ public class Employee {
     public Employee(String ID, String name, double salary){
         this.EMPLOYEE_ID = ID;
         this.name = name;
+<<<<<<< Updated upstream
         this.grossSalary = truncateSalary(salary);
+=======
+        this.grossSalary = grossSalary;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getGrossSalary() {
+        return truncateSalary(grossSalary);
+    }
+
+    public static double truncateSalary(double salary) {
+        return Math.floor(salary * 100) / 100;  
+    }
+
+    public double getNetSalary() {
+        double netSalary = getGrossSalary() - getGrossSalary() * 0.1;
+        return truncateSalary(netSalary);
+>>>>>>> Stashed changes
     }
 
     @Override
