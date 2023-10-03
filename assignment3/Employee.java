@@ -46,11 +46,11 @@ public class Employee {
     }
 
     public double getgrossSalary() {
-        return grossSalary;
+        return truncateSalary(grossSalary);
     }
 
     public double getNetSalary() {
-        return netSalary;
+        return truncateSalary(grossSalary);
     }
 
 
