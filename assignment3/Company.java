@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 public class Company{
 
-
     HashMap<String, Employee> employees = new HashMap<String, Employee>();
 
     public Company() {
