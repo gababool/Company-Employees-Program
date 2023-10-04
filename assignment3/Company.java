@@ -2,8 +2,6 @@ package assignment3;
 
 import java.util.HashMap;
 
-import javax.management.openmbean.InvalidKeyException;
-
 public class Company {
 
     HashMap<String, Employee> employees = new HashMap<String, Employee>();
@@ -27,10 +25,10 @@ public class Company {
         return succefullRegistrationMessage(employeeID);
     }
 
-    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree) {
+    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree){
         Manager manager = new Manager(employeeID, employeeName, grossSalary, degree);
         employees.put(employeeID, manager);
-        return succefullRegistrationMessage(employeeID);
+        return succefullRegistrationMessage(employeeID);     
     }
 
     public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree, String department) {
