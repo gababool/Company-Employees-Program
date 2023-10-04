@@ -1,6 +1,6 @@
 package assignment3;
 
-import java.lang.Math;
+//import java.lang.Math;
 
 public class Employee {
 
@@ -17,7 +17,7 @@ public class Employee {
 
     @Override
     public String toString(){
-        return String.format("%s's gross salary is %.2f SEK per month.", name, grossSalary);
+        return String.format("%s's gross salary is %.2f SEK per month.", name, this.getGrossSalary());
     }
 
     @Override
@@ -33,11 +33,12 @@ public class Employee {
     }
 
     public double truncateSalary(double salary){
-        double truncatedSalary = Math.floor(salary*100)/100;
+        double truncatedSalary = (int)(salary * 1000.0) / 100;
+        truncatedSalary = truncatedSalary / 10;
         return truncatedSalary;
     }
 
-    public String getname() {
+    public String getName() {
         return name;
     }
 
@@ -45,8 +46,8 @@ public class Employee {
         return EMPLOYEE_ID;
     }
 
-    public double getgrossSalary() {
-        return grossSalary;
+    public double getGrossSalary() {
+        return truncateSalary(this.grossSalary);
     }
 
     public double getNetSalary() {
