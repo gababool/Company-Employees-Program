@@ -82,4 +82,39 @@ public class Company {
         return allEmployees;
     }
 
+    public String updateSuccessMessage(String employeeID){
+        return "Employee " + employeeID + " was updated successfully.";
+    }
+
+    public String updateEmployeeName(String employeeID, String newName){
+        Employee employee = employees.get(employeeID);
+        employee.setName(newName);
+        return updateSuccessMessage(employeeID);
+    }
+
+    public String updateGrossSalary(String employeeID, double newGrossSalary){
+        Employee employee = employees.get(employeeID);
+        employee.setGrossSalary(newGrossSalary);
+        return updateSuccessMessage(employeeID);
+    }
+
+    public String updateInternGPA(String employeeID, int newGPA) {
+
+        // CODE HERE ONCE INTERN CLASS IS DONE
+
+        return updateSuccessMessage(employeeID);
+    }
+
+    public String updateManagerDegree(String employeeID, String newDegree) {
+        Manager employee = (Manager)employees.get(employeeID);
+        employee.setDegree(newDegree);
+        return updateSuccessMessage(employeeID);
+    }
+
+    public String updateDirectorDept(String employeeID, String newDept) {
+        Director employee = (Director)employees.get(employeeID);
+        employee.setDepartment(newDept);
+        return updateSuccessMessage(employeeID);
+    }
+
 }

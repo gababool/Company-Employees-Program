@@ -17,13 +17,17 @@ public class Director extends Manager {
 
     public double getNetSalary() {
         if(this.grossSalary > 50000) {
-            double newGrossSalary = this.truncateSalary(grossSalary - (30000 * 0.2) - ((grossSalary - 30000) * 0.4));
+            double newGrossSalary = truncateSalary(grossSalary - (30000 * 0.2) - ((grossSalary - 30000) * 0.4));
             return newGrossSalary;
         } else if(this.grossSalary >= 30000) {
-            return this.truncateSalary(grossSalary - grossSalary * 0.2);
+            return truncateSalary(grossSalary - grossSalary * 0.2);
         } else {
             return truncateSalary(grossSalary - grossSalary * 0.1);
         }
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
     
 }

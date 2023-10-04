@@ -17,7 +17,7 @@ Emma
 Martin
 - 1.1 Create and store regular employees (DONE)
 - 1.6 Retrieve a string including all employees (DONE)
-- 1.9 Update Employee’s Information
+- 1.9 Update Employee’s Information (DONE, except Intern. Not tested!)
 - 2.3 Presenting the creation or assignment with invalid Employee data.
 - 2.6 Presenting the creation or assignment with invalid Interns data.
 
