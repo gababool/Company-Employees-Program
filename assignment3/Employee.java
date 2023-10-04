@@ -9,10 +9,10 @@ public class Employee {
     protected String name;
     protected double grossSalary;
 
-    public Employee(String ID, String name, double salary){
+    public Employee(String ID, String name, double grossSalary){
         this.EMPLOYEE_ID = ID;
         this.name = name;
-        this.grossSalary = truncateSalary(salary);
+        this.grossSalary = truncateSalary(grossSalary);
     }
 
     @Override
@@ -32,10 +32,8 @@ public class Employee {
         return this.EMPLOYEE_ID == otherEmployee.getEmployeeID();
     }
 
-    public double truncateSalary(double salary){
-        double truncatedSalary = (int)(salary * 1000.0) / 100;
-        truncatedSalary = truncatedSalary / 10;
-        return truncatedSalary;
+    public static double truncateSalary(double salary){
+        return Math.floor(salary*100)/100;
     }
 
     public String getName() {
