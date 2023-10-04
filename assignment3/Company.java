@@ -19,21 +19,35 @@ public class Company {
         return "Employee " + employeeID + " was registered successfully.";
     }
 
+    public String updateSuccessMessage(String employeeID){
+        return "Employee " + employeeID + " was updated successfully";
+    }
+
+    // Creates regular employee
     public String createEmployee(String employeeID, String employeeName, double grossSalary) {
         Employee newEmployee = new Employee(employeeID, employeeName, grossSalary);
         employees.put(employeeID, newEmployee);
         return succefullRegistrationMessage(employeeID);
     }
 
+    // Creates a Manager employee
     public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree){
         Manager manager = new Manager(employeeID, employeeName, grossSalary, degree);
         employees.put(employeeID, manager);
         return succefullRegistrationMessage(employeeID);     
     }
 
+    // Creates a Director employee
     public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree, String department) {
         Director director = new Director(employeeID, employeeName, grossSalary, degree, department);
         employees.put(employeeID, director);
+        return succefullRegistrationMessage(employeeID);
+    }
+
+    // Creates and Intern employee
+    public String createEmployee(String employeeID, String employeeName, double grossSalary, int gpa){
+        Intern intern = new Intern(employeeID, employeeName, grossSalary, gpa);
+        employees.put(employeeID, intern);
         return succefullRegistrationMessage(employeeID);
     }
 
@@ -80,10 +94,6 @@ public class Company {
             allEmployees += "\n";
         }
         return allEmployees;
-    }
-
-    public String updateSuccessMessage(String employeeID){
-        return "Employee " + employeeID + " was updated successfully.";
     }
 
     public String updateEmployeeName(String employeeID, String newName){

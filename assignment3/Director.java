@@ -2,12 +2,14 @@ package assignment3;
 
 public class Director extends Manager {
 
+    private final int DIRECTOR_BONUS = 5000;
+
     private String department;
 
     public Director(String ID, String name, double grossSalary, String degree, String department) {
         super(ID, name, grossSalary, degree);
         this.department = department;
-        this.grossSalary = this.grossSalary + 5000;
+        this.grossSalary = this.grossSalary + DIRECTOR_BONUS;
     }
 
     @Override
@@ -28,6 +30,12 @@ public class Director extends Manager {
 
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    // DOES NOT CURRENTLY WORK, ERROR IN TASK 9. Do we need initalGrossSalary maybe?
+    @Override
+    public void setGrossSalary(double newGrossSalary){
+        this.grossSalary = newGrossSalary + DIRECTOR_BONUS;
     }
     
 }
