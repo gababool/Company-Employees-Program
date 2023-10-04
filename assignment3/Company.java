@@ -61,4 +61,17 @@ public class Company {
         return Employee.truncateSalary(totalSalary);
     }
 
+    public String printAllEmployees(){
+        String allEmployees = "";
+        int employeeCount = 0;
+        for(Employee e : employees.values()){
+            allEmployees += e;
+            employeeCount ++;
+        } 
+        if (employeeCount < employees.size()){
+            allEmployees += "\n";
+        }
+        return allEmployees;
+    }
+
 }

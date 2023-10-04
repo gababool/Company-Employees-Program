@@ -32,7 +32,7 @@ public class Employee {
         return this.EMPLOYEE_ID == otherEmployee.getEmployeeID();
     }
 
-    public double truncateSalary(double salary){
+    public static double truncateSalary(double salary){
         return Math.floor(salary*100)/100;
     }
 
