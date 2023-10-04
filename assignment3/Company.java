@@ -1,6 +1,7 @@
 package assignment3;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Company {
 
@@ -19,7 +20,7 @@ public class Company {
         return "Employee " + employeeID + " was registered successfully.";
     }
 
-    public String updateSuccessMessage(String employeeID){
+    public String updateSuccessMessage(String employeeID) {
         return "Employee " + employeeID + " was updated successfully";
     }
 
@@ -31,21 +32,22 @@ public class Company {
     }
 
     // Creates a Manager employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree){
+    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree) {
         Manager manager = new Manager(employeeID, employeeName, grossSalary, degree);
         employees.put(employeeID, manager);
-        return succefullRegistrationMessage(employeeID);     
+        return succefullRegistrationMessage(employeeID);
     }
 
     // Creates a Director employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree, String department) {
+    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree,
+            String department) {
         Director director = new Director(employeeID, employeeName, grossSalary, degree, department);
         employees.put(employeeID, director);
         return succefullRegistrationMessage(employeeID);
     }
 
     // Creates and Intern employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary, int gpa){
+    public String createEmployee(String employeeID, String employeeName, double grossSalary, int gpa) {
         Intern intern = new Intern(employeeID, employeeName, grossSalary, gpa);
         employees.put(employeeID, intern);
         return succefullRegistrationMessage(employeeID);
@@ -75,34 +77,34 @@ public class Company {
         // &throw new InvalidKeyException
     }
 
-    public double getTotalNetSalary(){
+    public double getTotalNetSalary() {
         double totalSalary = 0;
-        for(Employee e : employees.values()){
+        for (Employee e : employees.values()) {
             totalSalary += e.getNetSalary();
-        } 
+        }
         return Employee.truncateSalary(totalSalary);
     }
 
-    public String printAllEmployees(){
+    public String printAllEmployees() {
         String allEmployees = "";
         int employeeCount = 0;
-        for(Employee e : employees.values()){
+        for (Employee e : employees.values()) {
             allEmployees += e;
-            employeeCount ++;
-        } 
-        if (employeeCount < employees.size()){
+            employeeCount++;
+        }
+        if (employeeCount < employees.size()) {
             allEmployees += "\n";
         }
         return allEmployees;
     }
 
-    public String updateEmployeeName(String employeeID, String newName){
+    public String updateEmployeeName(String employeeID, String newName) {
         Employee employee = employees.get(employeeID);
         employee.setName(newName);
         return updateSuccessMessage(employeeID);
     }
 
-    public String updateGrossSalary(String employeeID, double newGrossSalary){
+    public String updateGrossSalary(String employeeID, double newGrossSalary) {
         Employee employee = employees.get(employeeID);
         employee.setGrossSalary(newGrossSalary);
         return updateSuccessMessage(employeeID);
@@ -116,15 +118,40 @@ public class Company {
     }
 
     public String updateManagerDegree(String employeeID, String newDegree) {
-        Manager employee = (Manager)employees.get(employeeID);
+        Manager employee = (Manager) employees.get(employeeID);
         employee.setDegree(newDegree);
         return updateSuccessMessage(employeeID);
     }
 
     public String updateDirectorDept(String employeeID, String newDept) {
-        Director employee = (Director)employees.get(employeeID);
+        Director employee = (Director) employees.get(employeeID);
         employee.setDepartment(newDept);
         return updateSuccessMessage(employeeID);
+    }
+
+    public Map<String, Integer> mapEachDegree() {
+        HashMap<String, Integer> numOfDegree = new HashMap<String, Integer>();
+        for (Employee e : employees.values()) {
+            if (e instanceof Manager) {
+                Manager manager = (Manager) e;
+                String degree = manager.getDegree();
+                Integer count = numOfDegree.get(degree);
+                if (count == null) {
+                    numOfDegree.put(degree, 1);
+                } else {
+                    numOfDegree.put(degree, ++count);
+                }
+            }
+        }
+        return numOfDegree;
+    }
+
+    public void printDegree(){
+        Map<String, Integer> degrees = this.mapEachDegree();
+        System.out.println("Academic background of employees: ");
+        for (String  d : degrees.keySet()){
+            System.out.println(d + ": => " + degrees.get(d));
+        }
     }
 
 }

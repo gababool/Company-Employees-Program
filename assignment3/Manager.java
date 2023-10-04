@@ -30,6 +30,11 @@ public class Manager extends Employee {
         this.degree = degree;
     }
 
+    public String getDegree(){
+        return degree;
+    }
+
+
     
 
 }
