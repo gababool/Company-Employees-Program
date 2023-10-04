@@ -9,35 +9,10 @@ public class Employee {
     protected String name;
     protected double grossSalary;
 
-    public Employee(String ID, String name, double salary){
+    public Employee(String ID, String name, double grossSalary){
         this.EMPLOYEE_ID = ID;
         this.name = name;
-<<<<<<< Updated upstream
-        this.grossSalary = truncateSalary(salary);
-=======
-        this.grossSalary = grossSalary;
-    }
-
-    public String getID() {
-        return ID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getGrossSalary() {
-        return truncateSalary(grossSalary);
-    }
-
-    public static double truncateSalary(double salary) {
-        return Math.floor(salary * 100) / 100;  
-    }
-
-    public double getNetSalary() {
-        double netSalary = getGrossSalary() - getGrossSalary() * 0.1;
-        return truncateSalary(netSalary);
->>>>>>> Stashed changes
+        this.grossSalary = truncateSalary(grossSalary);
     }
 
     @Override
@@ -58,8 +33,7 @@ public class Employee {
     }
 
     public double truncateSalary(double salary){
-        double truncatedSalary = Math.floor(salary*100)/100;
-        return truncatedSalary;
+        return Math.floor(salary*100)/100;
     }
 
     public String getname() {
@@ -71,7 +45,7 @@ public class Employee {
     }
 
     public double getgrossSalary() {
-        return grossSalary;
+        return truncateSalary(grossSalary);
     }
 
     public double getNetSalary() {

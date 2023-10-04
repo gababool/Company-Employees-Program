@@ -2,11 +2,8 @@ package assignment3;
 
 import java.util.HashMap;
 
-<<<<<<< Updated upstream
-=======
 import javax.management.openmbean.InvalidKeyException;
 
->>>>>>> Stashed changes
 public class Company {
 
     HashMap<String, Employee> employees = new HashMap<String, Employee>();
@@ -32,27 +29,7 @@ public class Company {
         return "Employee " + employeeID + " was registered successfully.";
     }
 
-<<<<<<< Updated upstream
-    public String printEmployee(String employeeID) {
-=======
-    public class ManagerEmployee extends Employee {
-        private String degree;
-
-        public ManagerEmployee(String ID, String name, double grossSalary, String degree) {
-            super(ID, name, grossSalary);
-            this.degree = degree;
-
-        }
-
-        @Override
-        public String toString() {
-            return degree + " " + getName() + "'s " + "gross salary is " + getGrossSalary() + " SEK per month.";
-        }
-
-    }
-
     public String printEmployee(String employeeID) throws InvalidInputException {
->>>>>>> Stashed changes
         Employee e = employees.get(employeeID);
         if (e != null) {
             return e.toString();
@@ -61,15 +38,11 @@ public class Company {
         }
     }
 
-<<<<<<< Updated upstream
     public Employee getEmployee(String employeeID) {
         Employee e = employees.get(employeeID);
         return e;
     }
 
-    public void removeEmployee(String employeeID) {
-        employees.remove(employeeID);
-=======
     public String removeEmployee(String employeeID) throws InvalidInputException {
         Employee e = employees.get(employeeID);
         if (e != null) {
@@ -86,7 +59,6 @@ public class Company {
             totalSalary += e.getNetSalary();
         } 
         return Employee.truncateSalary(totalSalary);
->>>>>>> Stashed changes
     }
 
 }
