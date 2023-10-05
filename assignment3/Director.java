@@ -3,13 +3,13 @@ package assignment3;
 public class Director extends Manager {
 
     private final int DIRECTOR_BONUS = 5000;
-
     private String department;
 
-    public Director(String ID, String name, double grossSalary, String degree, String department) {
-        super(ID, name, grossSalary, degree);
+    public Director(String ID, String name, double baseSalary, String degree, String department) {
+        super(ID, name, baseSalary, degree);
         this.department = department;
-        this.grossSalary = this.grossSalary + DIRECTOR_BONUS;
+        double salaryWithBonus = getSalaryWithBonus(this.grossSalary);
+        this.setGrossSalary(salaryWithBonus);
     }
 
     @Override
@@ -19,12 +19,11 @@ public class Director extends Manager {
 
     public double getNetSalary() {
         if(this.grossSalary > 50000) {
-            double newGrossSalary = truncateSalary(grossSalary - (30000 * 0.2) - ((grossSalary - 30000) * 0.4));
-            return newGrossSalary;
+            return truncateSalary(this.grossSalary - (30000 * 0.2) - ((this.grossSalary - 30000) * 0.4));
         } else if(this.grossSalary >= 30000) {
-            return truncateSalary(grossSalary - grossSalary * 0.2);
+            return truncateSalary(this.grossSalary - this.grossSalary * 0.2);
         } else {
-            return truncateSalary(grossSalary - grossSalary * 0.1);
+            return truncateSalary(this.grossSalary - this.grossSalary * 0.1);
         }
     }
 
@@ -32,10 +31,8 @@ public class Director extends Manager {
         this.department = department;
     }
 
-    // DOES NOT CURRENTLY WORK, ERROR IN TASK 9. Do we need initalGrossSalary maybe?
-    @Override
-    public void setGrossSalary(double newGrossSalary){
-        this.grossSalary = newGrossSalary + DIRECTOR_BONUS;
+    public double getSalaryWithBonus(double salary){
+        return salary + DIRECTOR_BONUS;
     }
     
 }

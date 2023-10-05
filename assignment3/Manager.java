@@ -3,31 +3,33 @@ package assignment3;
 public class Manager extends Employee {
 
     public String degree;
-    protected double initalGrossSalary;
-
-    public Manager(String ID, String name, double grossSalary, String degree) {
-        super(ID, name, grossSalary);
+    
+    public Manager(String ID, String name, double baseSalary, String degree) {
+        super(ID, name, baseSalary);
         this.degree = degree;
-        this.initalGrossSalary = grossSalary;
+        double salary = getSalaryBasedOnDegree(grossSalary, degree);
+        this.setGrossSalary(salary);
+    }
 
+    private double getSalaryBasedOnDegree(double salary, String degree) {
         if (degree == "BSc") {
-            this.grossSalary = grossSalary * 1.1;
+            return salary = baseSalary * 1.1;
         } else if (degree == "MSc") {
-            this.grossSalary = grossSalary * 1.2;
+            return salary = baseSalary * 1.2;
         } else if (degree == "PhD") {
-            this.grossSalary = grossSalary * 1.35;
-        } else {
-            this.grossSalary = grossSalary;
+            return salary = baseSalary * 1.35;
         }
+        return salary;
     }
 
     @Override
     public String toString() {
-        return degree + " " + name + "'s " + "gross salary is " + this.getGrossSalary() + " SEK per month.";
+        return String.format("%s %s's gross salary is %.2f SEK per month.", degree, name, this.getGrossSalary());
     }
 
     public void setDegree(String degree) {
         this.degree = degree;
+        getSalaryBasedOnDegree(baseSalary, degree);
     }
 
     public String getDegree(){

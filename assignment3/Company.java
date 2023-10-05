@@ -2,6 +2,7 @@ package assignment3;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.management.openmbean.InvalidKeyException;
 
 public class Company {
 
@@ -42,19 +43,18 @@ public class Company {
     }
 
     // Creates a Director employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree,
-            String department) {
+    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree, String department) {
         Director director = new Director(employeeID, employeeName, grossSalary, degree, department);
         employees.put(employeeID, director);
         return succefullRegistrationMessage(employeeID);
     }
 
     // Creates and Intern employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary, int gpa) {
-        Intern intern = new Intern(employeeID, employeeName, grossSalary, gpa);
-        employees.put(employeeID, intern);
-        return succefullRegistrationMessage(employeeID);
-    }
+    public String createEmployee(String employeeID, String employeeName, double grossSalary, int GPA) {
+            Intern intern = new Intern(employeeID, employeeName, grossSalary, GPA);
+            employees.put(employeeID, intern);
+            return succefullRegistrationMessage(employeeID);
+        }
 
     public String printEmployee(String employeeID) throws InvalidInputException {
         Employee e = employees.get(employeeID);
@@ -87,17 +87,18 @@ public class Company {
         }
         return Employee.truncateSalary(totalSalary);
     }
-
-    public String printAllEmployees() {
-        String allEmployees = "";
+   
+    public String printAllEmployees(){
+        String allEmployees = "All registered employees:\n";
         int employeeCount = 0;
-        for (Employee e : employees.values()) {
+        for(Employee e : this.employees.values()){
             allEmployees += e;
-            employeeCount++;
-        }
-        if (employeeCount < employees.size()) {
-            allEmployees += "\n";
-        }
+            employeeCount ++;
+
+            if (employeeCount < this.employees.size()){
+                allEmployees += "\n";
+            }
+        } 
         return allEmployees;
     }
 

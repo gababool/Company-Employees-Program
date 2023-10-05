@@ -1,18 +1,20 @@
 package assignment3;
 
-//import java.lang.Math;
+import java.lang.Math;
 
 public class Employee {
 
     private final String EMPLOYEE_ID;
 
     protected String name;
+    protected double baseSalary;
     protected double grossSalary;
 
-    public Employee(String ID, String name, double grossSalary){
+    public Employee(String ID, String name, double baseSalary){
         this.EMPLOYEE_ID = ID;
         this.name = name;
-        this.grossSalary = truncateSalary(grossSalary);
+        setBaseSalary(baseSalary);
+        setGrossSalary(baseSalary);
     }
 
     @Override
@@ -49,6 +51,7 @@ public class Employee {
     }
 
     public double getNetSalary() {
+        grossSalary = this.getGrossSalary();
         return truncateSalary(grossSalary - grossSalary * 0.1);
     }
 
@@ -57,7 +60,11 @@ public class Employee {
     }
 
     public void setGrossSalary(double grossSalary) {
-        this.grossSalary = grossSalary;
+        this.grossSalary = truncateSalary(grossSalary);
+    }
+
+    public void setBaseSalary(double baseSalary) {
+        this.baseSalary = truncateSalary(baseSalary);
     }
 
     
