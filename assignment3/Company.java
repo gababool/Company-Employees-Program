@@ -115,10 +115,7 @@ public class Company {
     }
 
     public String updateInternGPA(String employeeID, int newGPA) {
-
-        // CODE HERE ONCE INTERN CLASS IS DONE
-
-        return updateSuccessMessage(employeeID);
+         return updateSuccessMessage(employeeID);
     }
 
     public String updateManagerDegree(String employeeID, String newDegree) {
