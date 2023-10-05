@@ -35,7 +35,7 @@ public class Employee {
     }
 
     public static double truncateSalary(double salary){
-        return Math.floor(salary*100)/100;
+        return Math.floor(salary * 100) / 100;
     }
 
     public String getName() {

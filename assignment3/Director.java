@@ -14,7 +14,8 @@ public class Director extends Manager {
 
     @Override
     public String toString(){
-        return String.format("%s %s's gross salary is %.2f SEK per month. Dept: %s", this.degree, this.name, this.getGrossSalary(), this.department);
+        return String.format("%s %s's gross salary is %.2f SEK per month. Dept: %s", 
+        this.degree, this.name, this.getGrossSalary(), this.department);
     }
 
     public double getNetSalary() {
