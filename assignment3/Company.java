@@ -1,12 +1,13 @@
 package assignment3;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.management.openmbean.InvalidKeyException;
 
 public class Company {
 
-    HashMap<String, Employee> employees = new HashMap<String, Employee>();
+    HashMap<String, Employee> employees = new LinkedHashMap<String, Employee>();
 
     public Company() {
         // save
@@ -90,14 +91,8 @@ public class Company {
    
     public String printAllEmployees(){
         String allEmployees = "All registered employees:\n";
-        int employeeCount = 0;
-        for(Employee e : this.employees.values()){
-            allEmployees += e;
-            employeeCount ++;
-
-            if (employeeCount < this.employees.size()){
-                allEmployees += "\n";
-            }
+        for(Employee e : employees.values()){
+            allEmployees += e + "\n";
         } 
         return allEmployees;
     }
