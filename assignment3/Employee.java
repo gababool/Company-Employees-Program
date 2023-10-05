@@ -52,6 +52,16 @@ public class Employee {
         return truncateSalary(grossSalary - grossSalary * 0.1);
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setGrossSalary(double grossSalary) {
+        this.grossSalary = grossSalary;
+    }
+
+    
+
 
     
     

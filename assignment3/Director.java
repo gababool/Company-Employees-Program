@@ -2,12 +2,14 @@ package assignment3;
 
 public class Director extends Manager {
 
+    private final int DIRECTOR_BONUS = 5000;
+
     private String department;
 
     public Director(String ID, String name, double grossSalary, String degree, String department) {
         super(ID, name, grossSalary, degree);
         this.department = department;
-        this.grossSalary = this.grossSalary + 5000;
+        this.grossSalary = this.grossSalary + DIRECTOR_BONUS;
     }
 
     @Override
@@ -17,13 +19,23 @@ public class Director extends Manager {
 
     public double getNetSalary() {
         if(this.grossSalary > 50000) {
-            double newGrossSalary = this.truncateSalary(grossSalary - (30000 * 0.2) - ((grossSalary - 30000) * 0.4));
+            double newGrossSalary = truncateSalary(grossSalary - (30000 * 0.2) - ((grossSalary - 30000) * 0.4));
             return newGrossSalary;
         } else if(this.grossSalary >= 30000) {
-            return this.truncateSalary(grossSalary - grossSalary * 0.2);
+            return truncateSalary(grossSalary - grossSalary * 0.2);
         } else {
             return truncateSalary(grossSalary - grossSalary * 0.1);
         }
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    // DOES NOT CURRENTLY WORK, ERROR IN TASK 9. Do we need initalGrossSalary maybe?
+    @Override
+    public void setGrossSalary(double newGrossSalary){
+        this.grossSalary = newGrossSalary + DIRECTOR_BONUS;
     }
     
 }

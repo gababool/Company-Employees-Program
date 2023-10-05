@@ -26,4 +26,15 @@ public class Manager extends Employee {
         return degree + " " + name + "'s " + "gross salary is " + this.getGrossSalary() + " SEK per month.";
     }
 
+    public void setDegree(String degree) {
+        this.degree = degree;
+    }
+
+    public String getDegree(){
+        return degree;
+    }
+
+
+    
+
 }

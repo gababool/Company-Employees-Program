@@ -1,11 +1,11 @@
 
 
 Love
-- 1.2 The Company
-- 1.4 Remove stored employees
-- 1.7 Retrieve expenses with total salary
-- 2.1 No employee found.
-- 2.4 Presenting the creation or assignment with invalid Manager data.
+- 1.2 The Company (DONE)
+- 1.4 Remove stored employees (DONE)
+- 1.7 Retrieve expenses with total salary (DONE)
+- 2.1 No employee found. (DONE)
+- 2.4 Presenting the creation or assignment with invalid Manager data. (DONE)
 
 Emma
 - 1.3 Create different types of employees
@@ -16,8 +16,8 @@ Emma
 
 Martin
 - 1.1 Create and store regular employees (DONE)
-- 1.6 Retrieve a string including all employees
-- 1.9 Update Employee’s Information
+- 1.6 Retrieve a string including all employees (DONE)
+- 1.9 Update Employee’s Information (DONE, except Intern. Not tested!)
 - 2.3 Presenting the creation or assignment with invalid Employee data.
 - 2.6 Presenting the creation or assignment with invalid Interns data.
 
