@@ -30,6 +30,9 @@ public class Company {
     public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree) {
         Manager manager = new Manager(employeeID, employeeName, grossSalary, degree);
         employees.put(employeeID, manager);
+       // if (degree == "") {
+        //    throw new InvalidInputException("Employee " + employeeID + " CHANGE THIS.");
+        //}
         return succefullRegistrationMessage(employeeID);
     }
 
