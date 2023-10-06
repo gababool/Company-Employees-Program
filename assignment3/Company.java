@@ -2,11 +2,19 @@ package assignment3;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.management.openmbean.InvalidKeyException;
+
+class SortByGrossSalary implements Comparator<Employee> {
+    public int compare(Employee a, Employee b) {
+        return Double.compare(a.grossSalary, b.grossSalary);
+    }
+}
+
 
 public class Company {
 
@@ -153,15 +161,16 @@ public class Company {
         }
     }
 
-    // public String sortedByGrossSalary() {
-    //    String sortedByGrossSalary = "Employees sorted by gross salary (ascending order):\n";
-    //   List<Employee> employees = new ArrayList<>();
-       
-    //   Collections.sort(employees);
-       
-       
-    //    for(Employee employee : employees) {
-    //     // }
-       
-    //     return "";
+    public String printSortedEmployees() {
+        String sortedByGrossSalary = "Employees sorted by gross salary (ascending order):\n";
+        List<Employee> employees = new ArrayList<>(this.employees.values());
+
+        Collections.sort(employees, new SortByGrossSalary());
+
+        for(Employee employee : employees) {
+            sortedByGrossSalary += employee + "\n";
+        }
+
+        return sortedByGrossSalary;
     }
+}

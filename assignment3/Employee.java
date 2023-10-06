@@ -1,5 +1,4 @@
 package assignment3;
-
 import java.lang.Math;
 
 public class Employee {
@@ -66,10 +65,4 @@ public class Employee {
     public void setBaseSalary(double baseSalary) {
         this.baseSalary = truncateSalary(baseSalary);
     }
-
-    public int compareTo(Employee otherEmployee) {
-        return Double.compare(this.grossSalary, otherEmployee.grossSalary);
-
-    }
-    
 }
