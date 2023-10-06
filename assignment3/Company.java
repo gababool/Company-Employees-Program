@@ -50,7 +50,7 @@ public class Company {
         return succefullRegistrationMessage(employeeID);
     }
 
-    // Creates and Intern employee
+    // Creates an Intern employee
     public String createEmployee(String employeeID, String employeeName, double grossSalary, int GPA) {
             Intern intern = new Intern(employeeID, employeeName, grossSalary, GPA);
             employees.put(employeeID, intern);
@@ -142,7 +142,7 @@ public class Company {
         return numOfDegree;
     }
 
-    public void printDegree(){
+    public void printDegree() {
         Map<String, Integer> degrees = this.mapEachDegree();
         System.out.println("Academic background of employees: ");
         for (String  d : degrees.keySet()){
@@ -150,4 +150,15 @@ public class Company {
         }
     }
 
-}
+    public String sortedByGrossSalary() {
+       String sortedByGrossSalary = "Employees sorted by gross salary (ascending order):\n";
+       
+       
+       for(Employee employees : employees.values()) {
+        
+       }
+       
+        return "";
+    }
+
+    }
