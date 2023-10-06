@@ -1,7 +1,10 @@
 package assignment3;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import javax.management.openmbean.InvalidKeyException;
 
@@ -150,15 +153,15 @@ public class Company {
         }
     }
 
-    public String sortedByGrossSalary() {
-       String sortedByGrossSalary = "Employees sorted by gross salary (ascending order):\n";
+    // public String sortedByGrossSalary() {
+    //    String sortedByGrossSalary = "Employees sorted by gross salary (ascending order):\n";
+    //   List<Employee> employees = new ArrayList<>();
+       
+    //   Collections.sort(employees);
        
        
-       for(Employee employees : employees.values()) {
-        
-       }
+    //    for(Employee employee : employees) {
+    //     // }
        
-        return "";
-    }
-
+    //     return "";
     }

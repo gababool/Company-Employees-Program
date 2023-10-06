@@ -67,10 +67,9 @@ public class Employee {
         this.baseSalary = truncateSalary(baseSalary);
     }
 
-    
+    public int compareTo(Employee otherEmployee) {
+        return Double.compare(this.grossSalary, otherEmployee.grossSalary);
 
-
-    
-    
+    }
     
 }
