@@ -9,7 +9,7 @@ public class Employee {
     protected double baseSalary;
     protected double grossSalary;
 
-    public Employee(String ID, String name, double baseSalary){
+    public Employee(String ID, String name, double baseSalary) {
         this.EMPLOYEE_ID = ID;
         this.name = name;
         setBaseSalary(baseSalary);
@@ -17,24 +17,23 @@ public class Employee {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return String.format("%s's gross salary is %.2f SEK per month.", name, this.getGrossSalary());
     }
 
     @Override
-    public boolean equals(Object obj){
-        if (this == obj){
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
-        }
-        else if (obj != null || !(obj instanceof Employee)){
+        } else if (obj != null || !(obj instanceof Employee)) {
             return false;
         }
-        Employee otherEmployee = (Employee)obj;
+        Employee otherEmployee = (Employee) obj;
         return this.EMPLOYEE_ID == otherEmployee.getEmployeeID();
     }
 
-    public static double truncateSalary(double salary){
-        return Math.floor(salary * 100) / 100;
+    public static double truncateSalary(double salary) {
+        return (int)(salary * 100) / 100.0;
     }
 
     public String getName() {
