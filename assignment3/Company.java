@@ -37,6 +37,10 @@ public class Company {
         return "Employee " + employeeID + " was updated successfully";
     }
 
+    public String promotionSuccessMessage(String employeeID, String employeeType) {
+        return employeeID + " promoted successfully to " + employeeType + ".";
+    }
+
     // Creates regular employee
     public String createEmployee(String employeeID, String employeeName, double grossSalary) throws InvalidInputException {
         Employee newEmployee = new Employee(employeeID, employeeName, grossSalary);
@@ -174,5 +178,31 @@ public class Company {
         }
 
         return sortedByGrossSalary;
+    }
+
+    public String promoteToManager(String employeeID, String degree) throws InvalidInputException{
+        Employee e = employees.remove(employeeID);
+        employees.put(employeeID, new Manager(employeeID, e.getName(), e.getBaseSalary(), degree));
+        return promotionSuccessMessage(employeeID, "Manager");
+    }
+
+    // For promotion without a previous degree
+    public String promoteToDirector(String employeeID, String degree, String department) throws InvalidInputException{
+        Employee e = employees.remove(employeeID);
+        employees.put(employeeID, new Director(employeeID, e.getName(), e.getBaseSalary(), degree, department));
+        return promotionSuccessMessage(employeeID, "Director");
+    }
+
+    // For promotion where a previous degree exists
+    public String promoteToDirector(String employeeID, String department) throws InvalidInputException{
+        Manager e = (Manager)employees.remove(employeeID);
+        employees.put(employeeID, new Director(employeeID, e.getName(), e.getBaseSalary(), e.getDegree(), department));
+        return promotionSuccessMessage(employeeID, "Director");
+    }
+
+    public String promoteToIntern(String employeeID, int GPA) throws InvalidInputException{
+        Employee e = employees.remove(employeeID);
+        employees.put(employeeID, new Intern(employeeID, e.getName(), e.getBaseSalary(), GPA));
+        return promotionSuccessMessage(employeeID, "Intern");
     }
 }

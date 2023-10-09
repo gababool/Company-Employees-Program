@@ -58,6 +58,10 @@ public class Employee {
         return truncateSalary(this.grossSalary);
     }
 
+    public double getBaseSalary(){
+        return this.baseSalary;
+    }
+
     public double getNetSalary() {
         grossSalary = this.getGrossSalary();
         return truncateSalary(grossSalary - grossSalary * 0.1);
