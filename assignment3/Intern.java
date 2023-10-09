@@ -15,6 +15,7 @@ public class Intern extends Employee {
 
     public void setGPA(int GPA) {
         this.GPA = GPA;
+        setGrossSalaryBasedOnGPA(GPA, baseSalary);
     }
    
      private void setGrossSalaryBasedOnGPA(int GPA, double baseSalary) {

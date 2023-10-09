@@ -11,15 +11,16 @@ public class Manager extends Employee {
         this.setGrossSalary(salary);
     }
 
-    private double getSalaryBasedOnDegree(double salary, String degree) {
+    private double getSalaryBasedOnDegree(double salary, String degree) throws InvalidInputException {
         if (degree == "BSc") {
-            return salary = baseSalary * 1.1;
+            return baseSalary * 1.1;
         } else if (degree == "MSc") {
-            return salary = baseSalary * 1.2;
+            return baseSalary * 1.2;
         } else if (degree == "PhD") {
-            return salary = baseSalary * 1.35;
+            return baseSalary * 1.35;  
+        } else {
+            throw new InvalidInputException("Degree must be one of the options: BSc, MSc or PhD.");
         }
-        return salary;
     }
 
     @Override
@@ -27,7 +28,7 @@ public class Manager extends Employee {
         return String.format("%s %s's gross salary is %.2f SEK per month.", degree, name, this.getGrossSalary());
     }
 
-    public void setDegree(String degree) {
+    public void setDegree(String degree) throws InvalidInputException {
         this.degree = degree;
         getSalaryBasedOnDegree(baseSalary, degree);
     }

@@ -1,5 +1,4 @@
 package assignment3;
-import java.lang.Math;
 
 public class Employee {
 
@@ -10,7 +9,7 @@ public class Employee {
     protected double grossSalary;
 
     public Employee(String ID, String name, double baseSalary) throws InvalidInputException {
-        
+
         if (ID.trim() == ""){
             throw new InvalidInputException("ID cannot be blank.");
         }
@@ -23,7 +22,7 @@ public class Employee {
 
         this.EMPLOYEE_ID = ID;
         this.name = name;
-        setBaseSalary(baseSalary); // What is the purpose of this method? Same as gross?
+        this.baseSalary = baseSalary;
         setGrossSalary(baseSalary);
     }
 
@@ -68,15 +67,18 @@ public class Employee {
         return truncateSalary(grossSalary - grossSalary * 0.1);
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws InvalidInputException {
+        if (name.trim() == ""){
+            throw new InvalidInputException("Name cannot be blank.");
+        }
         this.name = name;
     }
 
-    public void setGrossSalary(double grossSalary) {
+    public void setGrossSalary(double grossSalary) throws InvalidInputException {
+        if (baseSalary < 0){
+            throw new InvalidInputException("Salary must be greater than zero.");
+        }
         this.grossSalary = truncateSalary(grossSalary);
     }
 
-    public void setBaseSalary(double baseSalary) {
-        this.baseSalary = truncateSalary(baseSalary);
-    }
 }

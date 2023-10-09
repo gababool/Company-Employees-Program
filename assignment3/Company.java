@@ -112,13 +112,13 @@ public class Company {
         return allEmployees;
     }
 
-    public String updateEmployeeName(String employeeID, String newName) {
+    public String updateEmployeeName(String employeeID, String newName) throws InvalidInputException {
         Employee employee = employees.get(employeeID);
         employee.setName(newName);
         return updateSuccessMessage(employeeID);
     }
 
-    public String updateGrossSalary(String employeeID, double newGrossSalary) {
+    public String updateGrossSalary(String employeeID, double newGrossSalary) throws InvalidInputException {
         Employee employee = employees.get(employeeID);
         employee.setGrossSalary(newGrossSalary);
         return updateSuccessMessage(employeeID);
@@ -130,7 +130,7 @@ public class Company {
         return updateSuccessMessage(employeeID);
     }
 
-    public String updateManagerDegree(String employeeID, String newDegree) {
+    public String updateManagerDegree(String employeeID, String newDegree) throws InvalidInputException {
         Manager employee = (Manager) employees.get(employeeID);
         employee.setDegree(newDegree);
         return updateSuccessMessage(employeeID);
