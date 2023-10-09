@@ -58,6 +58,9 @@ public class Epic1US9Test {
         String expectedLulu = "Lulu's gross salary is 0.00 SEK per month. GPA: 2";
         String expectedPray = "MSc Pray Tell's gross salary is 33601.18 SEK per month.";
 
+
+        // Salary calculations are incorrect
+
         assertEquals(expectedElektra,facade.printEmployee("Emp1"));
         assertEquals(expectedPray   ,facade.printEmployee("Emp3"));
         assertEquals(expectedLulu   ,facade.printEmployee("Emp4"));

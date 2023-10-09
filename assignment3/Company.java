@@ -38,14 +38,14 @@ public class Company {
     }
 
     // Creates regular employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary) {
+    public String createEmployee(String employeeID, String employeeName, double grossSalary) throws InvalidInputException {
         Employee newEmployee = new Employee(employeeID, employeeName, grossSalary);
         employees.put(employeeID, newEmployee);
         return succefullRegistrationMessage(employeeID);
     }
 
     // Creates a Manager employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree) {
+    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree) throws InvalidInputException {
         Manager manager = new Manager(employeeID, employeeName, grossSalary, degree);
         employees.put(employeeID, manager);
        // if (degree == "") {
@@ -55,14 +55,14 @@ public class Company {
     }
 
     // Creates a Director employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree, String department) {
+    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree, String department) throws InvalidInputException {
         Director director = new Director(employeeID, employeeName, grossSalary, degree, department);
         employees.put(employeeID, director);
         return succefullRegistrationMessage(employeeID);
     }
 
     // Creates an Intern employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary, int GPA) {
+    public String createEmployee(String employeeID, String employeeName, double grossSalary, int GPA) throws InvalidInputException {
             Intern intern = new Intern(employeeID, employeeName, grossSalary, GPA);
             employees.put(employeeID, intern);
             return succefullRegistrationMessage(employeeID);
@@ -121,7 +121,9 @@ public class Company {
     }
 
     public String updateInternGPA(String employeeID, int newGPA) {
-         return updateSuccessMessage(employeeID);
+        Intern employee = (Intern)employees.get(employeeID);
+        employee.setGPA(newGPA);
+        return updateSuccessMessage(employeeID);
     }
 
     public String updateManagerDegree(String employeeID, String newDegree) {

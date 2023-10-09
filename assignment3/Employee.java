@@ -9,10 +9,20 @@ public class Employee {
     protected double baseSalary;
     protected double grossSalary;
 
-    public Employee(String ID, String name, double baseSalary) {
+    public Employee(String ID, String name, double baseSalary) throws InvalidInputException {
+        if (ID == ""){
+            throw new InvalidInputException("ID cannot be blank.");
+        }
+        if (name == ""){
+            throw new InvalidInputException("Name cannot be blank.");
+        }
+        if (baseSalary < 0){
+            throw new InvalidInputException("Salary must be greater than zero.");
+        }
+
         this.EMPLOYEE_ID = ID;
         this.name = name;
-        setBaseSalary(baseSalary);
+        setBaseSalary(baseSalary); // What is the purpose of this method? Same as gross?
         setGrossSalary(baseSalary);
     }
 

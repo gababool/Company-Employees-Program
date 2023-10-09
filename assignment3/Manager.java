@@ -4,7 +4,7 @@ public class Manager extends Employee {
 
     public String degree;
     
-    public Manager(String ID, String name, double baseSalary, String degree) {
+    public Manager(String ID, String name, double baseSalary, String degree) throws InvalidInputException {
         super(ID, name, baseSalary);
         this.degree = degree;
         double salary = getSalaryBasedOnDegree(grossSalary, degree);
