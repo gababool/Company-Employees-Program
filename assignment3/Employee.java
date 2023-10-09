@@ -10,10 +10,11 @@ public class Employee {
     protected double grossSalary;
 
     public Employee(String ID, String name, double baseSalary) throws InvalidInputException {
-        if (ID == ""){
+        
+        if (ID.trim() == ""){
             throw new InvalidInputException("ID cannot be blank.");
         }
-        if (name == ""){
+        if (name.trim() == ""){
             throw new InvalidInputException("Name cannot be blank.");
         }
         if (baseSalary < 0){
