@@ -8,25 +8,26 @@ public class Director extends Manager {
     public Director(String ID, String name, double baseSalary, String degree, String department) throws InvalidInputException {
         super(ID, name, baseSalary, degree);
         this.department = department;
-        double salaryWithBonus = getSalaryWithBonus(this.grossSalary);
-        this.setGrossSalary(salaryWithBonus);
+        double salary = calculateSalary(baseSalary, degree);
+        setGrossSalary(salary);
     }
 
     @Override
     public String toString(){
         return String.format("%s %s's gross salary is %.2f SEK per month. Dept: %s", 
-        this.degree, this.name, this.getGrossSalary(), this.department);
+        this.degree, this.name, getSalary(), this.department);
     }
 
     public double getNetSalary() {
-        if(this.grossSalary > 50000) {
-            return this.grossSalary - (30000 * 0.2) - ((this.grossSalary - 30000) * 0.4);
+        double totalSalary = getSalary();
+        if(totalSalary > 50000) {
+            return totalSalary - (30000 * 0.2) - ((totalSalary - 30000) * 0.4);
             //return truncateSalary(this.grossSalary - (30000 * 0.2) - ((this.grossSalary - 30000) * 0.4));
-        } else if(this.grossSalary >= 30000) {
-            return (this.grossSalary - this.grossSalary * 0.2);
+        } else if(totalSalary >= 30000) {
+            return (totalSalary - totalSalary * 0.2);
             // return truncateSalary(this.grossSalary - this.grossSalary * 0.2);
         } else {
-            return this.grossSalary - this.grossSalary * 0.1;
+            return totalSalary - totalSalary * 0.1;
             // return truncateSalary(this.grossSalary - this.grossSalary * 0.1);
         }
     }
@@ -35,8 +36,8 @@ public class Director extends Manager {
         this.department = department;
     }
 
-    public double getSalaryWithBonus(double salary){
-        return salary + DIRECTOR_BONUS;
+    public double getSalary(){
+        return truncateSalary(grossSalary + DIRECTOR_BONUS);
     }
     
 }

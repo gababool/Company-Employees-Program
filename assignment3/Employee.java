@@ -74,11 +74,11 @@ public class Employee {
         this.name = name;
     }
 
-    public void setGrossSalary(double grossSalary) throws InvalidInputException {
+    public void setGrossSalary(double salaryAmount) throws InvalidInputException {
         if (baseSalary < 0){
             throw new InvalidInputException("Salary must be greater than zero.");
         }
-        this.grossSalary = truncateSalary(grossSalary);
+        this.grossSalary = truncateSalary(salaryAmount);
     }
 
 }

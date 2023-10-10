@@ -7,11 +7,11 @@ public class Manager extends Employee {
     public Manager(String ID, String name, double baseSalary, String degree) throws InvalidInputException {
         super(ID, name, baseSalary);
         this.degree = degree;
-        double salary = getSalaryBasedOnDegree(grossSalary, degree);
+        double salary = calculateSalary(baseSalary, degree);
         this.setGrossSalary(salary);
     }
 
-    private double getSalaryBasedOnDegree(double salary, String degree) throws InvalidInputException {
+    protected double calculateSalary(double salary, String degree) throws InvalidInputException {
         if (degree == "BSc") {
             return baseSalary * 1.1;
         } else if (degree == "MSc") {
@@ -30,7 +30,7 @@ public class Manager extends Employee {
 
     public void setDegree(String degree) throws InvalidInputException {
         this.degree = degree;
-        this.grossSalary = getSalaryBasedOnDegree(baseSalary, degree);
+        this.grossSalary = calculateSalary(baseSalary, degree);
     }
 
     public String getDegree(){
