@@ -30,7 +30,7 @@ public class Manager extends Employee {
 
     public void setDegree(String degree) throws InvalidInputException {
         this.degree = degree;
-        getSalaryBasedOnDegree(baseSalary, degree);
+        this.grossSalary = getSalaryBasedOnDegree(baseSalary, degree);
     }
 
     public String getDegree(){
