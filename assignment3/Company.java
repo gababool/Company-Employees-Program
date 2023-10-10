@@ -120,21 +120,22 @@ public class Company {
         return updateSuccessMessage(employeeID);
     }
 
-    public String updateGrossSalary(String employeeID, double newGrossSalary) throws InvalidInputException {
+    public String updateGrossSalary(String employeeID, double salary) throws InvalidInputException {
         Employee employee = employees.get(employeeID);
-        employee.setGrossSalary(newGrossSalary);
+        employee.setGrossSalary(salary);
+        employee.baseSalary = employee.getGrossSalary();
+        return updateSuccessMessage(employeeID);
+    }
+
+     public String updateManagerDegree(String employeeID, String newDegree) throws InvalidInputException {
+        Manager employee = (Manager) employees.get(employeeID);
+        employee.setDegree(newDegree);
         return updateSuccessMessage(employeeID);
     }
 
     public String updateInternGPA(String employeeID, int newGPA) {
         Intern employee = (Intern)employees.get(employeeID);
         employee.setGPA(newGPA);
-        return updateSuccessMessage(employeeID);
-    }
-
-    public String updateManagerDegree(String employeeID, String newDegree) throws InvalidInputException {
-        Manager employee = (Manager) employees.get(employeeID);
-        employee.setDegree(newDegree);
         return updateSuccessMessage(employeeID);
     }
 
