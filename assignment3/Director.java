@@ -22,13 +22,10 @@ public class Director extends Manager {
         double totalSalary = getSalary();
         if(totalSalary > 50000) {
             return totalSalary - (30000 * 0.2) - ((totalSalary - 30000) * 0.4);
-            //return truncateSalary(this.grossSalary - (30000 * 0.2) - ((this.grossSalary - 30000) * 0.4));
         } else if(totalSalary >= 30000) {
             return (totalSalary - totalSalary * 0.2);
-            // return truncateSalary(this.grossSalary - this.grossSalary * 0.2);
         } else {
             return totalSalary - totalSalary * 0.1;
-            // return truncateSalary(this.grossSalary - this.grossSalary * 0.1);
         }
     }
 
