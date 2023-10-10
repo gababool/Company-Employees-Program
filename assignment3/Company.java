@@ -118,7 +118,6 @@ public class Company {
         return updateSuccessMessage(employeeID);
     }
 
-
     public String updateGrossSalary(String employeeID, double salary) throws InvalidInputException {
         Employee employee = employees.get(employeeID);
         employee.setGrossSalary(salary);
@@ -131,7 +130,6 @@ public class Company {
         employee.setDegree(newDegree);
         return updateSuccessMessage(employeeID);
     }
-
 
     public String updateInternGPA(String employeeID, int newGPA) {
         Intern employee = (Intern)employees.get(employeeID);
