@@ -122,6 +122,7 @@ public class Company {
     public String updateGrossSalary(String employeeID, double salary) throws InvalidInputException {
         Employee employee = employees.get(employeeID);
         employee.setGrossSalary(salary);
+        employee.baseSalary = employee.getGrossSalary();
         return updateSuccessMessage(employeeID);
     }
 
