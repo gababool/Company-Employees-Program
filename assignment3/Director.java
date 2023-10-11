@@ -7,10 +7,13 @@ public class Director extends Manager {
 
     public Director(String ID, String name, double baseSalary, String degree, String department) throws InvalidInputException {
         super(ID, name, baseSalary, degree);
-        if()
-        this.department = department;
-        double salary = calculateSalary(baseSalary, degree);
-        setGrossSalary(salary);
+        if (department.equals("Business") || department.equals("Human Resources") || department.equals("Technical")) {
+            this.department = department;
+            double salary = calculateSalary(baseSalary, degree);
+            setGrossSalary(salary);
+        } else {
+            throw new InvalidInputException("Department must be one of the options: Business, Human Resources or Technical.");
+        }
     }
 
     @Override
@@ -30,8 +33,12 @@ public class Director extends Manager {
         }
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setDepartment(String department) throws InvalidInputException{
+          if (department.equals("Business") || department.equals("Human Resources") || department.equals("Technical")) {
+            this.department = department;
+        } else {
+            throw new InvalidInputException("Department must be one of the options: Business, Human Resources or Technical.");
+        }
     }
 
     public double getSalary(){

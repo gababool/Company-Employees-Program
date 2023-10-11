@@ -75,7 +75,7 @@ public class Employee {
     }
 
     public void setGrossSalary(double salaryAmount) throws InvalidInputException {
-        if (baseSalary < 0){
+        if (salaryAmount <= 0){
             throw new InvalidInputException("Salary must be greater than zero.");
         }
         this.grossSalary = truncateSalary(salaryAmount);
