@@ -3,12 +3,16 @@ package assignment3;
 public class Manager extends Employee {
 
     public String degree;
-    
+
     public Manager(String ID, String name, double baseSalary, String degree) throws InvalidInputException {
         super(ID, name, baseSalary);
-        this.degree = degree;
-        double salary = calculateSalary(baseSalary, degree);
-        this.setGrossSalary(salary);
+        if (degree.equals("BSc") || degree.equals("MSc") || degree.equals("PhD")) {
+            this.degree = degree;
+            double salary = calculateSalary(baseSalary, degree);
+            this.setGrossSalary(salary);
+        } else {
+            throw new InvalidInputException("Degree must be one of the options: BSc, MSc or PhD.");
+        }
     }
 
     protected double calculateSalary(double salary, String degree) throws InvalidInputException {
@@ -17,7 +21,7 @@ public class Manager extends Employee {
         } else if (degree == "MSc") {
             return salary * 1.2;
         } else if (degree == "PhD") {
-            return salary * 1.35;  
+            return salary * 1.35;
         } else {
             throw new InvalidInputException("Degree must be one of the options: BSc, MSc or PhD.");
         }
@@ -33,11 +37,8 @@ public class Manager extends Employee {
         this.grossSalary = calculateSalary(baseSalary, degree);
     }
 
-    public String getDegree(){
+    public String getDegree() {
         return degree;
     }
-
-
-    
 
 }
