@@ -15,15 +15,13 @@ class SortByGrossSalary implements Comparator<Employee> {
     }
 }
 
-//save
-
+// save
 
 public class Company {
 
     HashMap<String, Employee> employees = new LinkedHashMap<String, Employee>();
-
+    
     public Company() {
-        // save
     }
 
     public double getNetSalary(String employeeID) {
@@ -44,35 +42,39 @@ public class Company {
     }
 
     // Creates regular employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary) throws InvalidInputException {
+    public String createEmployee(String employeeID, String employeeName, double grossSalary)
+            throws InvalidInputException {
         Employee newEmployee = new Employee(employeeID, employeeName, grossSalary);
         employees.put(employeeID, newEmployee);
         return succefullRegistrationMessage(employeeID);
     }
 
     // Creates a Manager employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree) throws InvalidInputException {
+    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree)
+            throws InvalidInputException {
         Manager manager = new Manager(employeeID, employeeName, grossSalary, degree);
         employees.put(employeeID, manager);
-       // if (degree == "") {
-        //    throw new InvalidInputException("Employee " + employeeID + " CHANGE THIS.");
-        //}
+        // if (degree == "") {
+        // throw new InvalidInputException("Employee " + employeeID + " CHANGE THIS.");
+        // }
         return succefullRegistrationMessage(employeeID);
     }
 
     // Creates a Director employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree, String department) throws InvalidInputException {
+    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree,
+            String department) throws InvalidInputException {
         Director director = new Director(employeeID, employeeName, grossSalary, degree, department);
         employees.put(employeeID, director);
         return succefullRegistrationMessage(employeeID);
     }
 
     // Creates an Intern employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary, int GPA) throws InvalidInputException {
-            Intern intern = new Intern(employeeID, employeeName, grossSalary, GPA);
-            employees.put(employeeID, intern);
-            return succefullRegistrationMessage(employeeID);
-        }
+    public String createEmployee(String employeeID, String employeeName, double grossSalary, int GPA)
+            throws InvalidInputException {
+        Intern intern = new Intern(employeeID, employeeName, grossSalary, GPA);
+        employees.put(employeeID, intern);
+        return succefullRegistrationMessage(employeeID);
+    }
 
     public String printEmployee(String employeeID) throws InvalidInputException {
         Employee e = employees.get(employeeID);
@@ -98,19 +100,25 @@ public class Company {
         // &throw new InvalidKeyException
     }
 
-    public double getTotalNetSalary() {
+    public double getTotalNetSalary() throws NullPointerException {
+        if (employees.values() == null) {
+            throw new NullPointerException("No employees registered yet");
+        }
         double totalSalary = 0;
         for (Employee e : employees.values()) {
             totalSalary += e.getNetSalary();
         }
         return Employee.truncateSalary(totalSalary);
     }
-   
-    public String printAllEmployees(){
+
+    public String printAllEmployees() throws NullPointerException {
+        if (employees.values() == null) {
+            throw new NullPointerException("No employees registered yet");
+        }
         String allEmployees = "All registered employees:\n";
-        for(Employee e : employees.values()){
+        for (Employee e : employees.values()) {
             allEmployees += e + "\n";
-        } 
+        }
         return allEmployees;
     }
 
@@ -127,20 +135,20 @@ public class Company {
         Employee employee = employees.get(employeeID);
         employee.setGrossSalary(salary);
         employee.baseSalary = employee.getGrossSalary();
-        return updateSuccessMessage(employeeID);  
+        return updateSuccessMessage(employeeID);
     }
     // ??????????????????????????????????????????????????????
     // ??????????????????????????????????????????????????????
     // ??????????????????????????????????????????????????????
 
-     public String updateManagerDegree(String employeeID, String newDegree) throws InvalidInputException {
+    public String updateManagerDegree(String employeeID, String newDegree) throws InvalidInputException {
         Manager employee = (Manager) employees.get(employeeID);
         employee.setDegree(newDegree);
         return updateSuccessMessage(employeeID);
     }
 
     public String updateInternGPA(String employeeID, int newGPA) {
-        Intern employee = (Intern)employees.get(employeeID);
+        Intern employee = (Intern) employees.get(employeeID);
         employee.setGPA(newGPA);
         return updateSuccessMessage(employeeID);
     }
@@ -171,45 +179,48 @@ public class Company {
     public void printDegree() {
         Map<String, Integer> degrees = this.mapEachDegree();
         System.out.println("Academic background of employees: ");
-        for (String  d : degrees.keySet()){
+        for (String d : degrees.keySet()) {
             System.out.println(d + ": => " + degrees.get(d));
         }
     }
 
-    public String printSortedEmployees() {
+    public String printSortedEmployees() throws NullPointerException {
+        if (employees.values() == null) {
+            throw new NullPointerException("No employees registered yet");
+        }
         String sortedByGrossSalary = "Employees sorted by gross salary (ascending order):\n";
         List<Employee> employees = new ArrayList<>(this.employees.values());
 
         Collections.sort(employees, new SortByGrossSalary());
 
-        for(Employee employee : employees) {
+        for (Employee employee : employees) {
             sortedByGrossSalary += employee + "\n";
         }
 
         return sortedByGrossSalary;
     }
 
-    public String promoteToManager(String employeeID, String degree) throws InvalidInputException{
+    public String promoteToManager(String employeeID, String degree) throws InvalidInputException {
         Employee e = employees.remove(employeeID);
         employees.put(employeeID, new Manager(employeeID, e.getName(), e.getBaseSalary(), degree));
         return promotionSuccessMessage(employeeID, "Manager");
     }
 
     // For promotion without a previous degree
-    public String promoteToDirector(String employeeID, String degree, String department) throws InvalidInputException{
+    public String promoteToDirector(String employeeID, String degree, String department) throws InvalidInputException {
         Employee e = employees.remove(employeeID);
         employees.put(employeeID, new Director(employeeID, e.getName(), e.getBaseSalary(), degree, department));
         return promotionSuccessMessage(employeeID, "Director");
     }
 
     // For promotion where a previous degree exists
-    public String promoteToDirector(String employeeID, String department) throws InvalidInputException{
-        Manager e = (Manager)employees.remove(employeeID);
+    public String promoteToDirector(String employeeID, String department) throws InvalidInputException {
+        Manager e = (Manager) employees.remove(employeeID);
         employees.put(employeeID, new Director(employeeID, e.getName(), e.getBaseSalary(), e.getDegree(), department));
         return promotionSuccessMessage(employeeID, "Director");
     }
 
-    public String promoteToIntern(String employeeID, int GPA) throws InvalidInputException{
+    public String promoteToIntern(String employeeID, int GPA) throws InvalidInputException {
         Employee e = employees.remove(employeeID);
         employees.put(employeeID, new Intern(employeeID, e.getName(), e.getBaseSalary(), GPA));
         return promotionSuccessMessage(employeeID, "Intern");
