@@ -8,16 +8,16 @@ public class Employee {
     protected double baseSalary;
     protected double grossSalary;
 
-    public Employee(String ID, String name, double baseSalary) throws InvalidInputException {
+    public Employee(String ID, String name, double baseSalary) {
 
         if (ID.trim() == ""){
-            throw new InvalidInputException("ID cannot be blank.");
+            throw new IllegalArgumentException("ID cannot be blank.");
         }
         if (name.trim() == ""){
             throw new EmptyNameException();
         }
         if (baseSalary < 0){
-            throw new InvalidInputException("Salary must be greater than zero.");
+            throw new IllegalArgumentException("Salary must be greater than zero.");
         }
 
         this.EMPLOYEE_ID = ID;
@@ -67,16 +67,16 @@ public class Employee {
         return truncateSalary(grossSalary - grossSalary * 0.1);
     }
 
-    public void setName(String name) throws InvalidInputException {
+    public void setName(String name) {
         if (name.trim() == ""){
-            throw new InvalidInputException("Name cannot be blank.");
+            throw new EmptyNameException("Name cannot be blank.");
         }
         this.name = name;
     }
 
-    public void setGrossSalary(double salaryAmount) throws InvalidInputException {
+    public void setGrossSalary(double salaryAmount) {
         if (salaryAmount <= 0){
-            throw new InvalidInputException("Salary must be greater than zero.");
+            throw new IllegalArgumentException("Salary must be greater than zero.");
         }
         this.grossSalary = truncateSalary(salaryAmount);
     }

@@ -44,7 +44,7 @@ public class Company {
     // Creates regular employee
     public String createEmployee(String employeeID, String employeeName, double grossSalary) {
         if (employees.containsKey(employeeID)) {
-            throw new InvalidInputException("Cannot register. ID " + employeeID + " is already registered.");
+            throw new IllegalArgumentException("Cannot register. ID " + employeeID + " is already registered.");
         }
         Employee newEmployee = new Employee(employeeID, employeeName, grossSalary);
         employees.put(employeeID, newEmployee);
@@ -52,8 +52,7 @@ public class Company {
     }
 
     // Creates a Manager employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree)
-            throws InvalidInputException {
+    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree) {
         if (employees.containsKey(employeeID)) {
             throw new EmployeeAlreadyRegisteredExc(employeeID);
         }
@@ -64,7 +63,7 @@ public class Company {
 
     // Creates a Director employee
     public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree,
-            String department) throws InvalidInputException {
+            String department) {
         if (employees.containsKey(employeeID)) {
             throw new EmployeeAlreadyRegisteredExc(employeeID);
         }
@@ -74,8 +73,7 @@ public class Company {
     }
 
     // Creates an Intern employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary, int GPA)
-            throws InvalidInputException {
+    public String createEmployee(String employeeID, String employeeName, double grossSalary, int GPA) {
         if (employees.containsKey(employeeID)) {
             throw new EmployeeAlreadyRegisteredExc(employeeID);
         }
@@ -84,7 +82,7 @@ public class Company {
         return successfullRegistrationMessage(employeeID);
     }
 
-    public String printEmployee(String employeeID) throws NullPointerException {
+    public String printEmployee(String employeeID){
         Employee e = employees.get(employeeID);
         if (e == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -92,7 +90,7 @@ public class Company {
         return e.toString();
     }
 
-    public Employee getEmployee(String employeeID) throws NullPointerException {
+    public Employee getEmployee(String employeeID){
         Employee e = employees.get(employeeID);
         if (e == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -100,7 +98,7 @@ public class Company {
         return e;
     }
 
-    public String removeEmployee(String employeeID) throws NullPointerException {
+    public String removeEmployee(String employeeID) {
         Employee e = employees.get(employeeID);
         if (e == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -132,8 +130,7 @@ public class Company {
         return allEmployees;
     }
 
-    public String updateEmployeeName(String employeeID, String newName)
-            throws NullPointerException, InvalidInputException {
+    public String updateEmployeeName(String employeeID, String newName) {
         Employee employee = employees.get(employeeID);
         if (employee == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -145,8 +142,7 @@ public class Company {
     // ??????????????????????????????????????????????????????
     // ??????????????????????????????????????????????????????
     // ??????????????????????????????????????????????????????
-    public String updateGrossSalary(String employeeID, double salary)
-            throws InvalidInputException, NullPointerException {
+    public String updateGrossSalary(String employeeID, double salary){
         Employee employee = employees.get(employeeID);
         if (employee == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -159,8 +155,7 @@ public class Company {
     // ??????????????????????????????????????????????????????
     // ??????????????????????????????????????????????????????
 
-    public String updateManagerDegree(String employeeID, String newDegree)
-            throws InvalidInputException, NullPointerException {
+    public String updateManagerDegree(String employeeID, String newDegree){
         Manager employee = (Manager) employees.get(employeeID);
         if (employee == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -169,7 +164,7 @@ public class Company {
         return updateSuccessMessage(employeeID);
     }
 
-    public String updateInternGPA(String employeeID, int newGPA) throws NullPointerException, InvalidInputException {
+    public String updateInternGPA(String employeeID, int newGPA){
         Intern employee = (Intern) employees.get(employeeID);
         if (employee == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -178,8 +173,7 @@ public class Company {
         return updateSuccessMessage(employeeID);
     }
 
-    public String updateDirectorDept(String employeeID, String newDept)
-            throws NullPointerException, InvalidInputException {
+    public String updateDirectorDept(String employeeID, String newDept){
         Director employee = (Director) employees.get(employeeID);
         if (employee == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -231,8 +225,7 @@ public class Company {
         return sortedByGrossSalary;
     }
 
-    public String promoteToManager(String employeeID, String degree)
-            throws NullPointerException, InvalidInputException {
+    public String promoteToManager(String employeeID, String degree){
         Employee e = employees.remove(employeeID);
         if (e == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -242,8 +235,7 @@ public class Company {
     }
 
     // For promotion where employee is lacking a previous degree
-    public String promoteToDirector(String employeeID, String degree, String department)
-            throws NullPointerException, InvalidInputException {
+    public String promoteToDirector(String employeeID, String degree, String department){
         Employee e = employees.remove(employeeID);
         if (e == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -254,8 +246,7 @@ public class Company {
 
     // For promotion where a previous degree exists, i.e the employee is already a
     // Manager
-    public String promoteToDirector(String employeeID, String department)
-            throws NullPointerException, InvalidInputException {
+    public String promoteToDirector(String employeeID, String department){
         Manager e = (Manager) employees.remove(employeeID);
         if (e == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -264,7 +255,7 @@ public class Company {
         return promotionSuccessMessage(employeeID, "Director");
     }
 
-    public String promoteToIntern(String employeeID, int GPA) throws NullPointerException, InvalidInputException {
+    public String promoteToIntern(String employeeID, int GPA){
         Employee e = employees.remove(employeeID);
         if (e == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
