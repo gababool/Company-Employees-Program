@@ -44,7 +44,7 @@ public class Company {
     // Creates regular employee
     public String createEmployee(String employeeID, String employeeName, double grossSalary) {
         if (employees.containsKey(employeeID)) {
-            throw new IllegalArgumentException("Cannot register. ID " + employeeID + " is already registered.");
+            throw new EmployeeAlreadyRegisteredExc(employeeID);
         }
         Employee newEmployee = new Employee(employeeID, employeeName, grossSalary);
         employees.put(employeeID, newEmployee);
