@@ -18,8 +18,7 @@ public class Company {
 
     HashMap<String, Employee> employees = new LinkedHashMap<String, Employee>();
 
-    public Company() {
-    }
+    public Company() {}
 
     public double getNetSalary(String employeeID) throws NullPointerException {
         Employee e = employees.get(employeeID);
@@ -28,10 +27,9 @@ public class Company {
         } else {
             return e.getNetSalary();
         }
-
     }
 
-    private String succefullRegistrationMessage(String employeeID) {
+    private String successfullRegistrationMessage(String employeeID) {
         return "Employee " + employeeID + " was registered successfully.";
     }
 
@@ -51,7 +49,7 @@ public class Company {
         }
         Employee newEmployee = new Employee(employeeID, employeeName, grossSalary);
         employees.put(employeeID, newEmployee);
-        return succefullRegistrationMessage(employeeID);
+        return successfullRegistrationMessage(employeeID);
     }
 
     // Creates a Manager employee
@@ -62,7 +60,7 @@ public class Company {
         }
         Manager manager = new Manager(employeeID, employeeName, grossSalary, degree);
         employees.put(employeeID, manager);
-        return succefullRegistrationMessage(employeeID);
+        return successfullRegistrationMessage(employeeID);
     }
 
     // Creates a Director employee
@@ -73,7 +71,7 @@ public class Company {
         }
         Director director = new Director(employeeID, employeeName, grossSalary, degree, department);
         employees.put(employeeID, director);
-        return succefullRegistrationMessage(employeeID);
+        return successfullRegistrationMessage(employeeID);
     }
 
     // Creates an Intern employee
@@ -84,7 +82,7 @@ public class Company {
         }
         Intern intern = new Intern(employeeID, employeeName, grossSalary, GPA);
         employees.put(employeeID, intern);
-        return succefullRegistrationMessage(employeeID);
+        return successfullRegistrationMessage(employeeID);
     }
 
     public String printEmployee(String employeeID) throws NullPointerException {
