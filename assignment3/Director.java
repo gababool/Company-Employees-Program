@@ -7,9 +7,11 @@ public class Director extends Manager {
 
     public Director(String ID, String name, double baseSalary, String degree, String department) throws InvalidInputException {
         super(ID, name, baseSalary, degree);
+
         if (!(department.equals("Business") || department.equals("Human Resources") || department.equals("Technical"))) {
             throw new InvalidInputException("Department must be one of the options: Business, Human Resources or Technical.");
         } 
+        
         this.department = department;
         double salary = calculateSalary(baseSalary, degree);
         setGrossSalary(salary);

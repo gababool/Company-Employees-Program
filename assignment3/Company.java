@@ -24,9 +24,8 @@ public class Company {
         Employee e = employees.get(employeeID);
         if (e == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
-        } else {
-            return e.getNetSalary();
-        }
+        }  
+        return e.getNetSalary();    
     }
 
     private String successfullRegistrationMessage(String employeeID) {
@@ -98,7 +97,7 @@ public class Company {
         if (e == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
         }
-         return e;
+        return e;
     }
 
     public String removeEmployee(String employeeID) throws NullPointerException {
@@ -106,8 +105,8 @@ public class Company {
         if (e == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
         }
-            employees.remove(employeeID);
-            return "Employee " + employeeID + " was successfully removed.";
+        employees.remove(employeeID);
+        return "Employee " + employeeID + " was successfully removed.";
         
     }
 
@@ -125,14 +124,12 @@ public class Company {
     public String printAllEmployees() throws NullPointerException {
         if (employees.isEmpty()) {
             throw new NullPointerException("No employees registered yet.");
-        } else {
-            String allEmployees = "All registered employees:\n";
-            for (Employee e : employees.values()) {
-                allEmployees += e + "\n";
-            }
-            return allEmployees;
         }
-
+        String allEmployees = "All registered employees:\n";
+        for (Employee e : employees.values()) {
+            allEmployees += e + "\n";
+        }
+        return allEmployees;
     }
 
     public String updateEmployeeName(String employeeID, String newName)
@@ -229,7 +226,6 @@ public class Company {
         for (Employee employee : employees) {
             sortedByGrossSalary += employee + "\n";
         }
-
         return sortedByGrossSalary;
     }
 
@@ -243,7 +239,7 @@ public class Company {
         return promotionSuccessMessage(employeeID, "Manager");
     }
 
-    // For promotion without a previous degree
+    // For promotion where employee is lacking a previous degree
     public String promoteToDirector(String employeeID, String degree, String department)
             throws NullPointerException, InvalidInputException {
         Employee e = employees.remove(employeeID);
@@ -254,7 +250,7 @@ public class Company {
         return promotionSuccessMessage(employeeID, "Director");
     }
 
-    // For promotion where a previous degree exists
+    // For promotion where a previous degree exists, i.e the employee is already a Manager
     public String promoteToDirector(String employeeID, String department)
             throws NullPointerException, InvalidInputException {
         Manager e = (Manager) employees.remove(employeeID);

@@ -6,9 +6,11 @@ public class Manager extends Employee {
 
     public Manager(String ID, String name, double baseSalary, String degree) throws InvalidInputException {
         super(ID, name, baseSalary);
+        
         if (!(degree.equals("BSc") || degree.equals("MSc") || degree.equals("PhD"))) {
             throw new InvalidInputException("Degree must be one of the options: BSc, MSc or PhD.");
         }
+
         this.degree = degree;
         double salary = calculateSalary(baseSalary, degree);
         this.setGrossSalary(salary);
