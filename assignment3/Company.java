@@ -74,28 +74,31 @@ public class Company {
             return succefullRegistrationMessage(employeeID);
         }
 
-    public String printEmployee(String employeeID) throws InvalidInputException {
+    public String printEmployee(String employeeID) throws NullPointerException {
         Employee e = employees.get(employeeID);
         if (e != null) {
             return e.toString();
         } else {
-            throw new InvalidInputException("Employee " + employeeID + " was not registered yet.");
+            throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
         }
     }
 
-    public Employee getEmployee(String employeeID) {
+    public Employee getEmployee(String employeeID) throws NullPointerException {
         Employee e = employees.get(employeeID);
-        return e;
+        if (e != null) {
+            return e;
+        } else {
+            throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
+        }
     }
 
-    public String removeEmployee(String employeeID) throws InvalidInputException {
+    public String removeEmployee(String employeeID) throws NullPointerException {
         Employee e = employees.get(employeeID);
         if (e != null) {
             employees.remove(employeeID);
             return "Employee " + employeeID + " was successfully removed.";
         }
-        throw new InvalidInputException("Employee " + employeeID + " was not registered yet.");
-        // &throw new InvalidKeyException
+        throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
     }
 
     public double getTotalNetSalary() {

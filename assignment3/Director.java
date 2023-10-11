@@ -7,6 +7,7 @@ public class Director extends Manager {
 
     public Director(String ID, String name, double baseSalary, String degree, String department) throws InvalidInputException {
         super(ID, name, baseSalary, degree);
+        if()
         this.department = department;
         double salary = calculateSalary(baseSalary, degree);
         setGrossSalary(salary);
