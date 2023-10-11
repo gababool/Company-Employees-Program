@@ -42,7 +42,8 @@ public class Company {
     }
 
     // Creates regular employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary) {
+    public String createEmployee(String employeeID, String employeeName, double grossSalary)
+            throws EmployeeAlreadyRegisteredExc {
         if (employees.containsKey(employeeID)) {
             throw new EmployeeAlreadyRegisteredExc(employeeID);
         }
@@ -52,7 +53,8 @@ public class Company {
     }
 
     // Creates a Manager employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree) {
+    public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree)
+            throws Exception {
         if (employees.containsKey(employeeID)) {
             throw new EmployeeAlreadyRegisteredExc(employeeID);
         }
@@ -63,7 +65,7 @@ public class Company {
 
     // Creates a Director employee
     public String createEmployee(String employeeID, String employeeName, double grossSalary, String degree,
-            String department) {
+            String department) throws Exception {
         if (employees.containsKey(employeeID)) {
             throw new EmployeeAlreadyRegisteredExc(employeeID);
         }
@@ -73,7 +75,8 @@ public class Company {
     }
 
     // Creates an Intern employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary, int GPA) {
+    public String createEmployee(String employeeID, String employeeName, double grossSalary, int GPA)
+            throws EmployeeAlreadyRegisteredExc {
         if (employees.containsKey(employeeID)) {
             throw new EmployeeAlreadyRegisteredExc(employeeID);
         }
@@ -81,18 +84,20 @@ public class Company {
         employees.put(employeeID, intern);
         return successfullRegistrationMessage(employeeID);
     }
+
     // VERY IMPORTANT! CAN DO THIS FOR LOT OF THINGS
-    public String printEmployee(String employeeID){
+    public String printEmployee(String employeeID) throws EmployeeAlreadyRegisteredExc {
         Employee e = employees.get(employeeID);
         if (e == null) {
             throw new EmployeeAlreadyRegisteredExc("Employee " + employeeID + " was not registered yet.", employeeID);
-            //throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
+            // throw new NullPointerException("Employee " + employeeID + " was not
+            // registered yet.");
         }
         return e.toString();
     }
     // very VERY IMPORTNAT
 
-    public Employee getEmployee(String employeeID){
+    public Employee getEmployee(String employeeID) {
         Employee e = employees.get(employeeID);
         if (e == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -110,7 +115,7 @@ public class Company {
 
     }
 
-    public double getTotalNetSalary() {
+    public double getTotalNetSalary() throws NoEmployeesRegException {
         if (employees.isEmpty()) {
             throw new NoEmployeesRegException();
         }
@@ -121,7 +126,7 @@ public class Company {
         return Employee.truncateSalary(totalSalary);
     }
 
-    public String printAllEmployees() {
+    public String printAllEmployees() throws NoEmployeesRegException {
         if (employees.isEmpty()) {
             throw new NoEmployeesRegException();
         }
@@ -132,10 +137,10 @@ public class Company {
         return allEmployees;
     }
 
-    public String updateEmployeeName(String employeeID, String newName) {
+    public String updateEmployeeName(String employeeID, String newName) throws EmployeeNotRegisteredException {
         Employee employee = employees.get(employeeID);
         if (employee == null) {
-            throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
+            throw new EmployeeNotRegisteredException(employeeID);
         }
         employee.setName(newName);
         return updateSuccessMessage(employeeID);
@@ -144,7 +149,7 @@ public class Company {
     // ??????????????????????????????????????????????????????
     // ??????????????????????????????????????????????????????
     // ??????????????????????????????????????????????????????
-    public String updateGrossSalary(String employeeID, double salary){
+    public String updateGrossSalary(String employeeID, double salary) {
         Employee employee = employees.get(employeeID);
         if (employee == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -157,7 +162,7 @@ public class Company {
     // ??????????????????????????????????????????????????????
     // ??????????????????????????????????????????????????????
 
-    public String updateManagerDegree(String employeeID, String newDegree){
+    public String updateManagerDegree(String employeeID, String newDegree) throws Exception {
         Manager employee = (Manager) employees.get(employeeID);
         if (employee == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -166,16 +171,16 @@ public class Company {
         return updateSuccessMessage(employeeID);
     }
 
-    public String updateInternGPA(String employeeID, int newGPA){
+    public String updateInternGPA(String employeeID, int newGPA) throws EmployeeNotRegisteredException {
         Intern employee = (Intern) employees.get(employeeID);
         if (employee == null) {
-            throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
+            throw new EmployeeNotRegisteredException(employeeID);
         }
         employee.setGPA(newGPA);
         return updateSuccessMessage(employeeID);
     }
 
-    public String updateDirectorDept(String employeeID, String newDept){
+    public String updateDirectorDept(String employeeID, String newDept) {
         Director employee = (Director) employees.get(employeeID);
         if (employee == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -184,7 +189,7 @@ public class Company {
         return updateSuccessMessage(employeeID);
     }
 
-    public Map<String, Integer> mapEachDegree() {
+    public Map<String, Integer> mapEachDegree() throws NoEmployeesRegException {
         HashMap<String, Integer> numOfDegree = new HashMap<String, Integer>();
         if (employees.isEmpty()) {
             throw new NoEmployeesRegException();
@@ -204,7 +209,7 @@ public class Company {
         return numOfDegree;
     }
 
-    public void printDegree() {
+    public void printDegree() throws NoEmployeesRegException {
         Map<String, Integer> degrees = this.mapEachDegree();
         System.out.println("Academic background of employees: ");
         for (String d : degrees.keySet()) {
@@ -212,7 +217,7 @@ public class Company {
         }
     }
 
-    public String printSortedEmployees() {
+    public String printSortedEmployees() throws NoEmployeesRegException {
         if (employees.isEmpty()) {
             throw new NoEmployeesRegException();
         }
@@ -227,7 +232,7 @@ public class Company {
         return sortedByGrossSalary;
     }
 
-    public String promoteToManager(String employeeID, String degree){
+    public String promoteToManager(String employeeID, String degree) throws Exception {
         Employee e = employees.remove(employeeID);
         if (e == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -237,7 +242,7 @@ public class Company {
     }
 
     // For promotion where employee is lacking a previous degree
-    public String promoteToDirector(String employeeID, String degree, String department){
+    public String promoteToDirector(String employeeID, String degree, String department) throws Exception {
         Employee e = employees.remove(employeeID);
         if (e == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -248,7 +253,7 @@ public class Company {
 
     // For promotion where a previous degree exists, i.e the employee is already a
     // Manager
-    public String promoteToDirector(String employeeID, String department){
+    public String promoteToDirector(String employeeID, String department) throws Exception {
         Manager e = (Manager) employees.remove(employeeID);
         if (e == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -257,7 +262,7 @@ public class Company {
         return promotionSuccessMessage(employeeID, "Director");
     }
 
-    public String promoteToIntern(String employeeID, int GPA){
+    public String promoteToIntern(String employeeID, int GPA) {
         Employee e = employees.remove(employeeID);
         if (e == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");

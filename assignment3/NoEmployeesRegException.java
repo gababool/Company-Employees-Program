@@ -1,11 +1,11 @@
 package assignment3;
 
-public class NoEmployeesRegException extends NullPointerException {
+public class NoEmployeesRegException extends Exception{
     public NoEmployeesRegException(){
         super("No employees registered yet.");
     }
 
-    public NoEmployeesRegException(String message) throws NullPointerException{
+    public NoEmployeesRegException(String message){
         super(message);
     }
 }
