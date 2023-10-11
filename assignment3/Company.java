@@ -20,7 +20,7 @@ public class Company {
 
     public Company() {}
 
-    public double getNetSalary(String employeeID) throws NullPointerException {
+    public double getNetSalary(String employeeID) {
         Employee e = employees.get(employeeID);
         if (e == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
@@ -41,8 +41,7 @@ public class Company {
     }
 
     // Creates regular employee
-    public String createEmployee(String employeeID, String employeeName, double grossSalary)
-            throws InvalidInputException {
+    public String createEmployee(String employeeID, String employeeName, double grossSalary) {
         if (employees.containsKey(employeeID)) {
             throw new InvalidInputException("Cannot register. ID " + employeeID + " is already registered.");
         }
