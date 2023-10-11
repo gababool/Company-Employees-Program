@@ -109,9 +109,9 @@ public class Company {
         
     }
 
-    public double getTotalNetSalary() throws NullPointerException {
+    public double getTotalNetSalary() {
         if (employees.isEmpty()) {
-            throw new NullPointerException("No employees registered yet.");
+            throw new NoEmployeesRegException();
         }
         double totalSalary = 0;
         for (Employee e : employees.values()) {
@@ -120,9 +120,9 @@ public class Company {
         return Employee.truncateSalary(totalSalary);
     }
 
-    public String printAllEmployees() throws NullPointerException {
+    public String printAllEmployees() {
         if (employees.isEmpty()) {
-            throw new NullPointerException("No employees registered yet.");
+            throw new NoEmployeesRegException();
         }
         String allEmployees = "All registered employees:\n";
         for (Employee e : employees.values()) {
@@ -185,10 +185,10 @@ public class Company {
         return updateSuccessMessage(employeeID);
     }
 
-    public Map<String, Integer> mapEachDegree() throws NullPointerException {
+    public Map<String, Integer> mapEachDegree() {
         HashMap<String, Integer> numOfDegree = new HashMap<String, Integer>();
         if (employees.isEmpty()) {
-            throw new NullPointerException("No employees registered yet.");
+            throw new NoEmployeesRegException();
         }
         for (Employee e : employees.values()) {
             if (e instanceof Manager) {
@@ -213,9 +213,9 @@ public class Company {
         }
     }
 
-    public String printSortedEmployees() throws NullPointerException {
+    public String printSortedEmployees() {
         if (employees.isEmpty()) {
-            throw new NullPointerException("No employees registered yet.");
+            throw new NoEmployeesRegException();
         }
         String sortedByGrossSalary = "Employees sorted by gross salary (ascending order):\n";
         List<Employee> employees = new ArrayList<>(this.employees.values());

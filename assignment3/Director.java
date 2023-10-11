@@ -5,11 +5,11 @@ public class Director extends Manager {
     private final int DIRECTOR_BONUS = 5000;
     private String department;
 
-    public Director(String ID, String name, double baseSalary, String degree, String department) throws InvalidInputException {
+    public Director(String ID, String name, double baseSalary, String degree, String department) {
         super(ID, name, baseSalary, degree);
 
         if (!(department.equals("Business") || department.equals("Human Resources") || department.equals("Technical"))) {
-            throw new InvalidInputException("Department must be one of the options: Business, Human Resources or Technical.");
+            throw new InvalidDeptException();
         } 
         
         this.department = department;
@@ -34,11 +34,11 @@ public class Director extends Manager {
         }
     }
 
-    public void setDepartment(String department) throws InvalidInputException{
+    public void setDepartment(String department) {
           if (department.equals("Business") || department.equals("Human Resources") || department.equals("Technical")) {
             this.department = department;
         } else {
-            throw new InvalidInputException("Department must be one of the options: Business, Human Resources or Technical.");
+            throw new InvalidDeptException();
         }
     }
 

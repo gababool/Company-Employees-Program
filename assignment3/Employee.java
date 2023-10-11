@@ -14,7 +14,7 @@ public class Employee {
             throw new InvalidInputException("ID cannot be blank.");
         }
         if (name.trim() == ""){
-            throw new InvalidInputException("Name cannot be blank.");
+            throw new EmptyNameException();
         }
         if (baseSalary < 0){
             throw new InvalidInputException("Salary must be greater than zero.");
