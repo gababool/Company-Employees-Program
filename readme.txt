@@ -11,7 +11,7 @@ Love
 Emma
 - 1.3 Create different types of employees (DONE)
 - 1.5 Retrieve string from an employee (DONE)
-- 1.8 Retrieve employees sorted by gross salary.
+- 1.8 Retrieve employees sorted by gross salary. (DONE)
 - 2.2 Specific employee not found or not registered yet.
 - 2.5 Presenting the creation or assignment with invalid Directors data.
 
