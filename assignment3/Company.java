@@ -81,14 +81,16 @@ public class Company {
         employees.put(employeeID, intern);
         return successfullRegistrationMessage(employeeID);
     }
-
+    // VERY IMPORTANT! CAN DO THIS FOR LOT OF THINGS
     public String printEmployee(String employeeID){
         Employee e = employees.get(employeeID);
         if (e == null) {
-            throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
+            throw new EmployeeAlreadyRegisteredExc("Employee " + employeeID + " was not registered yet.", employeeID);
+            //throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
         }
         return e.toString();
     }
+    // very VERY IMPORTNAT
 
     public Employee getEmployee(String employeeID){
         Employee e = employees.get(employeeID);
