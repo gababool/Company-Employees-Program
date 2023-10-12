@@ -45,7 +45,7 @@ public class Company {
 
     // Creates regular employee
     public String createEmployee(String employeeID, String employeeName, double grossSalary)
-            throws EmployeeRegistryException {
+            throws EmployeeRegistryException, CannotBeEmptyException, InvalidArgumentException {
         if (employees.containsKey(employeeID)) {
             throw new EmployeeRegistryException("Cannot register. ID " + employeeID + " is already registered.");
         }
@@ -78,7 +78,7 @@ public class Company {
 
     // Creates an Intern employee
     public String createEmployee(String employeeID, String employeeName, double grossSalary, int GPA)
-            throws EmployeeRegistryException {
+            throws EmployeeRegistryException, CannotBeEmptyException, InvalidArgumentException {
         if (employees.containsKey(employeeID)) {
             throw new EmployeeRegistryException("Cannot register. ID " + employeeID + " is already registered.");
         }
@@ -91,7 +91,7 @@ public class Company {
     public String printEmployee(String employeeID) throws EmployeeRegistryException {
         Employee e = employees.get(employeeID);
         if (e == null) {
-            throw new EmployeRegistryException("Employee " + employeeID + " was not registered yet.");
+            throw new EmployeeRegistryException("Employee " + employeeID + " was not registered yet.");
             // throw new NullPointerException("Employee " + employeeID + " was not
             // registered yet.");
         }
@@ -234,7 +234,7 @@ public class Company {
         return sortedByGrossSalary;
     }
 
-    public String promoteToManager(String employeeID, String degree) throws EmployeeRegistryException  {
+    public String promoteToManager(String employeeID, String degree) throws EmployeeRegistryException, InvalidArgumentException, CannotBeEmptyException  {
         Employee e = employees.remove(employeeID);
         if (e == null) {
             throw new EmployeeRegistryException("Employee " + employeeID + " was not registered yet.");
@@ -244,7 +244,7 @@ public class Company {
     }
 
     // For promotion where employee is lacking a previous degree
-    public String promoteToDirector(String employeeID, String degree, String department) throws EmployeeRegistryException{
+    public String promoteToDirector(String employeeID, String degree, String department) throws Exception{
         Employee e = employees.remove(employeeID);
         if (e == null) {
             throw new EmployeeRegistryException("Employee " + employeeID + " was not registered yet.");
@@ -255,7 +255,7 @@ public class Company {
 
     // For promotion where a previous degree exists, i.e the employee is already a
     // Manager
-    public String promoteToDirector(String employeeID, String department) throws EmployeeRegistryException {
+    public String promoteToDirector(String employeeID, String department) throws Exception {
         Manager e = (Manager) employees.remove(employeeID);
         if (e == null) {
             throw new EmployeeRegistryException("Employee " + employeeID + " was not registered yet.");
@@ -264,7 +264,7 @@ public class Company {
         return promotionSuccessMessage(employeeID, "Director");
     }
 
-    public String promoteToIntern(String employeeID, int GPA) throws EmployeeRegistryException {
+    public String promoteToIntern(String employeeID, int GPA) throws EmployeeRegistryException, CannotBeEmptyException, InvalidArgumentException {
         Employee e = employees.remove(employeeID);
         if (e == null) {
             throw new EmployeeRegistryException("Employee " + employeeID + " was not registered yet.");

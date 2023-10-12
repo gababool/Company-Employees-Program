@@ -4,11 +4,11 @@ public class Manager extends Employee {
 
     public String degree;
 
-    public Manager(String ID, String name, double baseSalary, String degree) throws Exception {
+    public Manager(String ID, String name, double baseSalary, String degree) throws InvalidArgumentException, CannotBeEmptyException {
         super(ID, name, baseSalary);
 
         if (!(degree.equals("BSc") || degree.equals("MSc") || degree.equals("PhD"))) {
-            throw new Exception("Degree must be one of the options: BSc, MSc or PhD.");
+            throw new InvalidArgumentException("Degree must be one of the options: BSc, MSc or PhD.");
         }
 
         this.degree = degree;
