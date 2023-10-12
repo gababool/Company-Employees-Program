@@ -119,7 +119,7 @@ public class Company {
 
     public double getTotalNetSalary() throws CannotBeEmptyException {
         if (employees.isEmpty()) {
-            throw new CannotBeEmptyException();
+            throw new CannotBeEmptyException("No employees registered yet.");
         }
         double totalSalary = 0;
         for (Employee e : employees.values()) {
@@ -130,7 +130,7 @@ public class Company {
 
     public String printAllEmployees() throws CannotBeEmptyException {
         if (employees.isEmpty()) {
-            throw new CannotBeEmptyException();
+            throw new CannotBeEmptyException("No employees registered yet.");
         }
         String allEmployees = "All registered employees:\n";
         for (Employee e : employees.values()) {
@@ -194,7 +194,7 @@ public class Company {
     public Map<String, Integer> mapEachDegree() throws CannotBeEmptyException {
         HashMap<String, Integer> numOfDegree = new HashMap<String, Integer>();
         if (employees.isEmpty()) {
-            throw new CannotBeEmptyException();
+            throw new CannotBeEmptyException("No employees registered yet.");
         }
         for (Employee e : employees.values()) {
             if (e instanceof Manager) {
@@ -221,7 +221,7 @@ public class Company {
 
     public String printSortedEmployees() throws CannotBeEmptyException {
         if (employees.isEmpty()) {
-            throw new CannotBeEmptyException();
+            throw new CannotBeEmptyException("No employees registered yet.");
         }
         String sortedByGrossSalary = "Employees sorted by gross salary (ascending order):\n";
         List<Employee> employees = new ArrayList<>(this.employees.values());
