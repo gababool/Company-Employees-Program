@@ -21,11 +21,11 @@ public class Company {
     public Company() {}
 
     public double getNetSalary(String employeeID) throws NullPointerException {
-        Employee e = employees.get(employeeID);
-        if (e == null) {
+        Employee employee = employees.get(employeeID);
+        if (employee == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
         }  
-        return e.getNetSalary();    
+        return employee.getNetSalary();    
     }
 
     private String successfullRegistrationMessage(String employeeID) {
@@ -85,24 +85,24 @@ public class Company {
     }
 
     public String printEmployee(String employeeID) throws NullPointerException {
-        Employee e = employees.get(employeeID);
-        if (e == null) {
+        Employee employee = employees.get(employeeID);
+        if (employee == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
         }
-        return e.toString();
+        return employee.toString();
     }
 
     public Employee getEmployee(String employeeID) throws NullPointerException {
-        Employee e = employees.get(employeeID);
-        if (e == null) {
+        Employee employee = employees.get(employeeID);
+        if (employee == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
         }
-        return e;
+        return employee;
     }
 
     public String removeEmployee(String employeeID) throws NullPointerException {
-        Employee e = employees.get(employeeID);
-        if (e == null) {
+        Employee employee = employees.get(employeeID);
+        if (employee == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
         }
         employees.remove(employeeID);
@@ -115,8 +115,8 @@ public class Company {
             throw new NullPointerException("No employees registered yet.");
         }
         double totalSalary = 0;
-        for (Employee e : employees.values()) {
-            totalSalary += e.getNetSalary();
+        for (Employee employee : employees.values()) {
+            totalSalary += employee.getNetSalary();
         }
         return Employee.truncateSalary(totalSalary);
     }
@@ -126,8 +126,8 @@ public class Company {
             throw new NullPointerException("No employees registered yet.");
         }
         String allEmployees = "All registered employees:\n";
-        for (Employee e : employees.values()) {
-            allEmployees += e + "\n";
+        for (Employee employee : employees.values()) {
+            allEmployees += employee + "\n";
         }
         return allEmployees;
     }
@@ -209,8 +209,8 @@ public class Company {
     public void printDegree() {
         Map<String, Integer> degrees = this.mapEachDegree();
         System.out.println("Academic background of employees: ");
-        for (String d : degrees.keySet()) {
-            System.out.println(d + ": => " + degrees.get(d));
+        for (String degree : degrees.keySet()) {
+            System.out.println(degree + ": => " + degrees.get(degree));
         }
     }
 
@@ -231,42 +231,42 @@ public class Company {
 
     public String promoteToManager(String employeeID, String degree)
             throws NullPointerException, InvalidInputException {
-        Employee e = employees.remove(employeeID);
-        if (e == null) {
+        Employee employee = employees.remove(employeeID);
+        if (employee == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
         }
-        employees.put(employeeID, new Manager(employeeID, e.getName(), e.getBaseSalary(), degree));
+        employees.put(employeeID, new Manager(employeeID, employee.getName(), employee.getBaseSalary(), degree));
         return promotionSuccessMessage(employeeID, "Manager");
     }
 
     // For promotion where employee is lacking a previous degree
     public String promoteToDirector(String employeeID, String degree, String department)
             throws NullPointerException, InvalidInputException {
-        Employee e = employees.remove(employeeID);
-        if (e == null) {
+        Employee employee = employees.remove(employeeID);
+        if (employee == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
         }
-        employees.put(employeeID, new Director(employeeID, e.getName(), e.getBaseSalary(), degree, department));
+        employees.put(employeeID, new Director(employeeID, employee.getName(), employee.getBaseSalary(), degree, department));
         return promotionSuccessMessage(employeeID, "Director");
     }
 
     // For promotion where a previous degree exists, i.e the employee is already a Manager
     public String promoteToDirector(String employeeID, String department)
             throws NullPointerException, InvalidInputException {
-        Manager e = (Manager) employees.remove(employeeID);
-        if (e == null) {
+        Manager employee = (Manager) employees.remove(employeeID);
+        if (employee == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
         }
-        employees.put(employeeID, new Director(employeeID, e.getName(), e.getBaseSalary(), e.getDegree(), department));
+        employees.put(employeeID, new Director(employeeID, employee.getName(), employee.getBaseSalary(), employee.getDegree(), department));
         return promotionSuccessMessage(employeeID, "Director");
     }
 
     public String promoteToIntern(String employeeID, int GPA) throws NullPointerException, InvalidInputException {
-        Employee e = employees.remove(employeeID);
-        if (e == null) {
+        Employee employee = employees.remove(employeeID);
+        if (employee == null) {
             throw new NullPointerException("Employee " + employeeID + " was not registered yet.");
         }
-        employees.put(employeeID, new Intern(employeeID, e.getName(), e.getBaseSalary(), GPA));
+        employees.put(employeeID, new Intern(employeeID, employee.getName(), employee.getBaseSalary(), GPA));
         return promotionSuccessMessage(employeeID, "Intern");
     }
 }

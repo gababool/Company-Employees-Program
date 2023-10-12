@@ -3,6 +3,7 @@ package assignment3;
 public class Intern extends Employee {
 
     private int GPA;
+    private double internBonus = 1000.0;
 
     public Intern(String ID, String name, double baseSalary, int GPA) throws InvalidInputException {
         super(ID, name, baseSalary);
@@ -25,7 +26,7 @@ public class Intern extends Employee {
         if (this.GPA <= 5) {
             this.grossSalary = 0.0;
         } else if (GPA >= 8) {
-            this.grossSalary = baseSalary + 1000.0;
+            this.grossSalary = baseSalary + internBonus;
         }
     }
 
