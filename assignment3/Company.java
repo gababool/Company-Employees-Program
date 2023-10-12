@@ -87,17 +87,13 @@ public class Company {
         return successfullRegistrationMessage(employeeID);
     }
 
-    // VERY IMPORTANT! CAN DO THIS FOR LOT OF THINGS
     public String printEmployee(String employeeID) throws EmployeeRegistryException {
         Employee e = employees.get(employeeID);
         if (e == null) {
             throw new EmployeeRegistryException("Employee " + employeeID + " was not registered yet.");
-            // throw new NullPointerException("Employee " + employeeID + " was not
-            // registered yet.");
         }
         return e.toString();
     }
-    // very VERY IMPORTNAT
 
     public Employee getEmployee(String employeeID) throws EmployeeRegistryException {
         Employee e = employees.get(employeeID);

@@ -5,7 +5,7 @@ public class Director extends Manager {
     private final int DIRECTOR_BONUS = 5000;
     private String department;
 
-    public Director(String ID, String name, double baseSalary, String degree, String department) throws Exception {
+    public Director(String ID, String name, double baseSalary, String degree, String department) throws InvalidArgumentException, CannotBeEmptyException {
         super(ID, name, baseSalary, degree);
 
         if (!(department.equals("Business") || department.equals("Human Resources") || department.equals("Technical"))) {

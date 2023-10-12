@@ -18,11 +18,10 @@ Emma
 Martin
 - 1.1 Create and store regular employees (DONE)
 - 1.6 Retrieve a string including all employees (DONE)
-- 1.9 Update Employee’s Information (DONE, but salary calculations NOT WORKING)
+- 1.9 Update Employee’s Information (DONE)
 - 2.3 Preventing the creation or assignment with invalid Employee data. (DONE)
 - 2.6 Preventing the creation or assignment with invalid Interns data. (DONE)
 
 Together:
 - 1.11 Promotion of employees
 - Design Task (Factory Pattern)
-- Change from e to employee.
