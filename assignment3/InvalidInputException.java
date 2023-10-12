@@ -4,5 +4,5 @@ package assignment3;
         
         public InvalidInputException(String message)  {
             super(message);
-        }
+        } 
     }
