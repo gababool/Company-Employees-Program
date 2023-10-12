@@ -5,7 +5,7 @@ public class Director extends Manager {
     private final int DIRECTOR_BONUS = 5000;
     private String department;
 
-    public Director(String ID, String name, double baseSalary, String degree, String department) throws InvalidInputException {
+    public Director(String ID, String name, double baseSalary, String degree, String department) throws Exception {
         super(ID, name, baseSalary, degree);
 
         if (!(department.equals("Business") || department.equals("Human Resources") || department.equals("Technical"))) {
@@ -20,7 +20,7 @@ public class Director extends Manager {
     @Override
     public String toString(){
         return String.format("%s %s's gross salary is %.2f SEK per month. Dept: %s", 
-        this.degree, this.name, getSalary(), this.department);
+        degree, name, getSalary(), department);
     }
 
     public double getNetSalary() {
@@ -34,7 +34,7 @@ public class Director extends Manager {
         }
     }
 
-    public void setDepartment(String department) throws InvalidInputException{
+    public void setDepartment(String department) throws Exception{
           if (department.equals("Business") || department.equals("Human Resources") || department.equals("Technical")) {
             this.department = department;
         } else {

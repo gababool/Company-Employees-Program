@@ -5,18 +5,18 @@ public class Intern extends Employee {
     private int GPA;
     private double internBonus = 1000.0;
 
-    public Intern(String ID, String name, double baseSalary, int GPA) throws InvalidInputException {
+    public Intern(String ID, String name, double baseSalary, int GPA) throws Exception {
         super(ID, name, baseSalary);
         if (0 > GPA || GPA > 10) {
-            throw new InvalidInputException(GPA + " outside range. Must be between 0-10.");
+            throw new IllegalArgumentException(GPA + " outside range. Must be between 0-10.");
         }
         this.GPA = GPA;
         setGrossSalaryBasedOnGPA(this.GPA, this.baseSalary);
     }
 
-    public void setGPA(int GPA) throws InvalidInputException {
+    public void setGPA(int GPA) {
         if (0 > GPA || GPA > 10) {
-            throw new InvalidInputException(GPA + " outside range. Must be between 0-10.");
+            throw new IllegalArgumentException(GPA + " outside range. Must be between 0-10.");
         }
         this.GPA = GPA;
         setGrossSalaryBasedOnGPA(GPA, baseSalary);
