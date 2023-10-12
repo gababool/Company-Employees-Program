@@ -8,6 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+//import assignment3.exceptions.EmployeeNotRegisteredException;
+
 class SortByGrossSalary implements Comparator<Employee> {
     public int compare(Employee a, Employee b) {
         return Double.compare(a.grossSalary, b.grossSalary);
