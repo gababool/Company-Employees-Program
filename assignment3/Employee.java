@@ -67,9 +67,9 @@ public class Employee {
         return truncateSalary(grossSalary - grossSalary * 0.1);
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws CannotBeEmptyException {
         if (name.trim() == ""){
-            throw new EmptyNameException("Name cannot be blank.");
+            throw new CannotBeEmptyException("Name cannot be blank.");
         }
         this.name = name;
     }
