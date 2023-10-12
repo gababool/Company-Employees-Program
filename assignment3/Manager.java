@@ -34,11 +34,10 @@ public class Manager extends Employee {
     }
 
     public void setDegree(String degree) throws Exception {
-        if (!(degree.equals("BSc") || degree.equals("MSc") || degree.equals("PhD")))
+        if (!(degree.equals("BSc") || degree.equals("MSc") || degree.equals("PhD"))){
             throw new InvalidInputException("Degree must be one of the options: BSc, MSc or PhD.");
-
+        }
         this.degree = degree;
-        this.grossSalary = calculateSalary(baseSalary, degree);
     }
 
     public String getDegree() {
