@@ -18,7 +18,8 @@ public class Company {
 
     private HashMap<String, Employee> employees = new LinkedHashMap<String, Employee>();
 
-    public Company() {}
+    public Company() {
+    }
 
     public double getNetSalary(String employeeID) throws Exception {
         Employee employee = employees.get(employeeID);
@@ -114,11 +115,22 @@ public class Company {
         if (employees.isEmpty()) {
             throw new NullValueException("No employees registered yet.");
         }
-        double totalSalary = 0;
+        double totalNetSalary = 0;
         for (Employee employee : employees.values()) {
-            totalSalary += employee.getNetSalary();
+            totalNetSalary += employee.getNetSalary();
         }
-        return Employee.truncateSalary(totalSalary);
+        return Employee.truncateSalary(totalNetSalary);
+    }
+
+    public double getTotalGrossSalary() throws Exception {
+        if (employees.isEmpty()) {
+            throw new NullValueException("No employees registered yet.");
+        }
+        double totalGrossSalary = 0;
+        for (Employee employee : employees.values()) {
+            totalGrossSalary += employee.getGrossSalary();
+        }
+        return Employee.truncateSalary(totalGrossSalary);
     }
 
     public String printAllEmployees() throws Exception {
@@ -227,32 +239,36 @@ public class Company {
         return sortedByGrossSalary;
     }
 
-    public String promoteToManager(String employeeID, String degree) throws Exception  {
+    public String promoteToManager(String employeeID, String degree) throws Exception {
         Employee employee = employees.remove(employeeID);
         if (employee == null) {
             throw new NullValueException("Employee " + employeeID + " was not registered yet.");
         }
-        employees.put(employeeID, EmployeeFactory.createManager(employeeID, employee.getName(), employee.getBaseSalary(), degree));
+        employees.put(employeeID,
+                EmployeeFactory.createManager(employeeID, employee.getName(), employee.getBaseSalary(), degree));
         return promotionSuccessMessage(employeeID, "Manager");
     }
 
     // For promotion where employee is lacking a previous degree
-    public String promoteToDirector(String employeeID, String degree, String department) throws Exception{
+    public String promoteToDirector(String employeeID, String degree, String department) throws Exception {
         Employee employee = employees.remove(employeeID);
         if (employee == null) {
             throw new NullValueException("Employee " + employeeID + " was not registered yet.");
         }
-        employees.put(employeeID, EmployeeFactory.createDirector(employeeID, employee.getName(), employee.getBaseSalary(), degree, department));
+        employees.put(employeeID, EmployeeFactory.createDirector(employeeID, employee.getName(),
+                employee.getBaseSalary(), degree, department));
         return promotionSuccessMessage(employeeID, "Director");
     }
 
-    // For promotion where a previous degree exists, i.e the employee is already a Manager
+    // For promotion where a previous degree exists, i.e the employee is already a
+    // Manager
     public String promoteToDirector(String employeeID, String department) throws Exception {
         Manager employee = (Manager) employees.remove(employeeID);
         if (employee == null) {
             throw new NullValueException("Employee " + employeeID + " was not registered yet.");
         }
-        employees.put(employeeID, EmployeeFactory.createDirector(employeeID, employee.getName(), employee.getBaseSalary(), employee.getDegree(), department));
+        employees.put(employeeID, EmployeeFactory.createDirector(employeeID, employee.getName(),
+                employee.getBaseSalary(), employee.getDegree(), department));
         return promotionSuccessMessage(employeeID, "Director");
     }
 
@@ -261,7 +277,8 @@ public class Company {
         if (employee == null) {
             throw new NullValueException("Employee " + employeeID + " was not registered yet.");
         }
-        employees.put(employeeID, EmployeeFactory.createIntern(employeeID, employee.getName(), employee.getBaseSalary(), GPA));
+        employees.put(employeeID,
+                EmployeeFactory.createIntern(employeeID, employee.getName(), employee.getBaseSalary(), GPA));
         return promotionSuccessMessage(employeeID, "Intern");
     }
 }
