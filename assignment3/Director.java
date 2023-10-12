@@ -9,7 +9,7 @@ public class Director extends Manager {
         super(ID, name, baseSalary, degree);
 
         if (!(department.equals("Business") || department.equals("Human Resources") || department.equals("Technical"))) {
-            throw new InvalidDeptException();
+            throw new InvalidArgumentException();
         } 
         
         this.department = department;
@@ -34,11 +34,11 @@ public class Director extends Manager {
         }
     }
 
-    public void setDepartment(String department) {
+    public void setDepartment(String department) throws InvalidArgumentException{
           if (department.equals("Business") || department.equals("Human Resources") || department.equals("Technical")) {
             this.department = department;
         } else {
-            throw new InvalidDeptException();
+            throw new InvalidArgumentException();
         }
     }
 

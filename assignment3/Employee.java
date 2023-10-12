@@ -8,16 +8,16 @@ public class Employee {
     protected double baseSalary;
     protected double grossSalary;
 
-    public Employee(String ID, String name, double baseSalary) {
+    public Employee(String ID, String name, double baseSalary) throws CannotBeEmptyException, InvalidArgumentException {
 
         if (ID.trim() == ""){
-            throw new IllegalArgumentException("ID cannot be blank.");
+            throw new CannotBeEmptyException("ID cannot be blank.");
         }
         if (name.trim() == ""){
-            throw new EmptyNameException();
+            throw new CannotBeEmptyException("Name cannot be blank.");
         }
         if (baseSalary < 0){
-            throw new IllegalArgumentException("Salary must be greater than zero.");
+            throw new InvalidArgumentException("Salary must be greater than zero.");
         }
 
         this.EMPLOYEE_ID = ID;
