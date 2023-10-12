@@ -8,8 +8,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-//import assignment3.exceptions.EmployeeNotRegisteredException;
-
 class SortByGrossSalary implements Comparator<Employee> {
     public int compare(Employee a, Employee b) {
         return Double.compare(a.grossSalary, b.grossSalary);
@@ -18,10 +16,9 @@ class SortByGrossSalary implements Comparator<Employee> {
 
 public class Company {
 
-    HashMap<String, Employee> employees = new LinkedHashMap<String, Employee>();
+    private HashMap<String, Employee> employees = new LinkedHashMap<String, Employee>();
 
-    public Company() {
-    }
+    public Company() {}
 
     public double getNetSalary(String employeeID) throws EmployeeRegistryException {
         Employee e = employees.get(employeeID);
@@ -49,7 +46,7 @@ public class Company {
         if (employees.containsKey(employeeID)) {
             throw new EmployeeRegistryException("Cannot register. ID " + employeeID + " is already registered.");
         }
-        Employee newEmployee = new Employee(employeeID, employeeName, grossSalary);
+        Employee newEmployee = EmployeeFactory.createEmployee(employeeID, employeeName, grossSalary);
         employees.put(employeeID, newEmployee);
         return successfullRegistrationMessage(employeeID);
     }
@@ -60,7 +57,7 @@ public class Company {
         if (employees.containsKey(employeeID)) {
             throw new EmployeeRegistryException("Cannot register. ID " + employeeID + " is already registered.");
         }
-        Manager manager = new Manager(employeeID, employeeName, grossSalary, degree);
+        Employee manager = EmployeeFactory.createManager(employeeID, employeeName, grossSalary, degree);
         employees.put(employeeID, manager);
         return successfullRegistrationMessage(employeeID);
     }
@@ -71,7 +68,7 @@ public class Company {
         if (employees.containsKey(employeeID)) {
             throw new EmployeeRegistryException("Cannot register. ID " + employeeID + " is already registered.");
         }
-        Director director = new Director(employeeID, employeeName, grossSalary, degree, department);
+        Director director = EmployeeFactory.createDirector(employeeID, employeeName, grossSalary, degree, department);
         employees.put(employeeID, director);
         return successfullRegistrationMessage(employeeID);
     }
@@ -82,7 +79,7 @@ public class Company {
         if (employees.containsKey(employeeID)) {
             throw new EmployeeRegistryException("Cannot register. ID " + employeeID + " is already registered.");
         }
-        Intern intern = new Intern(employeeID, employeeName, grossSalary, GPA);
+        Intern intern = EmployeeFactory.createIntern(employeeID, employeeName, grossSalary, GPA);
         employees.put(employeeID, intern);
         return successfullRegistrationMessage(employeeID);
     }
@@ -235,7 +232,7 @@ public class Company {
         if (e == null) {
             throw new EmployeeRegistryException("Employee " + employeeID + " was not registered yet.");
         }
-        employees.put(employeeID, new Manager(employeeID, e.getName(), e.getBaseSalary(), degree));
+        employees.put(employeeID, EmployeeFactory.createManager(employeeID, e.getName(), e.getBaseSalary(), degree));
         return promotionSuccessMessage(employeeID, "Manager");
     }
 
@@ -245,18 +242,17 @@ public class Company {
         if (e == null) {
             throw new EmployeeRegistryException("Employee " + employeeID + " was not registered yet.");
         }
-        employees.put(employeeID, new Director(employeeID, e.getName(), e.getBaseSalary(), degree, department));
+        employees.put(employeeID, EmployeeFactory.createDirector(employeeID, e.getName(), e.getBaseSalary(), degree, department));
         return promotionSuccessMessage(employeeID, "Director");
     }
 
-    // For promotion where a previous degree exists, i.e the employee is already a
-    // Manager
+    // For promotion where a previous degree exists, i.e the employee is already a Manager
     public String promoteToDirector(String employeeID, String department) throws Exception {
         Manager e = (Manager) employees.remove(employeeID);
         if (e == null) {
             throw new EmployeeRegistryException("Employee " + employeeID + " was not registered yet.");
         }
-        employees.put(employeeID, new Director(employeeID, e.getName(), e.getBaseSalary(), e.getDegree(), department));
+        employees.put(employeeID, EmployeeFactory.createDirector(employeeID, e.getName(), e.getBaseSalary(), e.getDegree(), department));
         return promotionSuccessMessage(employeeID, "Director");
     }
 
@@ -265,7 +261,7 @@ public class Company {
         if (e == null) {
             throw new EmployeeRegistryException("Employee " + employeeID + " was not registered yet.");
         }
-        employees.put(employeeID, new Intern(employeeID, e.getName(), e.getBaseSalary(), GPA));
+        employees.put(employeeID, EmployeeFactory.createIntern(employeeID, e.getName(), e.getBaseSalary(), GPA));
         return promotionSuccessMessage(employeeID, "Intern");
     }
 }
