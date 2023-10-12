@@ -139,7 +139,7 @@ public class Company {
         return allEmployees;
     }
 
-    public String updateEmployeeName(String employeeID, String newName) throws EmployeeRegistryException {
+    public String updateEmployeeName(String employeeID, String newName) throws EmployeeRegistryException, CannotBeEmptyException {
         Employee employee = employees.get(employeeID);
         if (employee == null) {
             throw new EmployeeRegistryException("Employee " + employeeID + " was not registered yet.");
