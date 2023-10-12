@@ -74,6 +74,13 @@ public class Employee {
         this.name = name;
     }
 
+    public void setBaseSalary(double salaryAmount) {
+        if (salaryAmount <= 0){
+            throw new IllegalArgumentException("Salary must be greater than zero.");
+        }
+        this.baseSalary = truncateSalary(salaryAmount);
+    }
+
     public void setGrossSalary(double salaryAmount) {
         if (salaryAmount <= 0){
             throw new IllegalArgumentException("Salary must be greater than zero.");
