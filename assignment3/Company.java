@@ -21,11 +21,11 @@ public class Company {
     public Company() {}
 
     public double getNetSalary(String employeeID) throws Exception {
-        Employee e = employees.get(employeeID);
-        if (e == null) {
+        Employee employee = employees.get(employeeID);
+        if (employee == null) {
             throw new NullValueException("Employee " + employeeID + " was not registered yet.");
         }
-        return e.getNetSalary();
+        return employee.getNetSalary();
     }
 
     private String successfullRegistrationMessage(String employeeID) {
@@ -101,8 +101,8 @@ public class Company {
     }
 
     public String removeEmployee(String employeeID) throws Exception {
-        Employee e = employees.get(employeeID);
-        if (e == null) {
+        Employee employee = employees.get(employeeID);
+        if (employee == null) {
             throw new NullValueException("Employee " + employeeID + " was not registered yet.");
         }
         employees.remove(employeeID);
@@ -189,9 +189,9 @@ public class Company {
         if (employees.isEmpty()) {
             throw new NullValueException("No employees registered yet.");
         }
-        for (Employee e : employees.values()) {
-            if (e instanceof Manager) {
-                Manager manager = (Manager) e;
+        for (Employee employee : employees.values()) {
+            if (employee instanceof Manager) {
+                Manager manager = (Manager) employee;
                 String degree = manager.getDegree();
                 Integer count = numOfDegree.get(degree);
                 if (count == null) {
@@ -228,40 +228,40 @@ public class Company {
     }
 
     public String promoteToManager(String employeeID, String degree) throws Exception  {
-        Employee e = employees.remove(employeeID);
-        if (e == null) {
+        Employee employee = employees.remove(employeeID);
+        if (employee == null) {
             throw new NullValueException("Employee " + employeeID + " was not registered yet.");
         }
-        employees.put(employeeID, EmployeeFactory.createManager(employeeID, e.getName(), e.getBaseSalary(), degree));
+        employees.put(employeeID, EmployeeFactory.createManager(employeeID, employee.getName(), employee.getBaseSalary(), degree));
         return promotionSuccessMessage(employeeID, "Manager");
     }
 
     // For promotion where employee is lacking a previous degree
     public String promoteToDirector(String employeeID, String degree, String department) throws Exception{
-        Employee e = employees.remove(employeeID);
-        if (e == null) {
+        Employee employee = employees.remove(employeeID);
+        if (employee == null) {
             throw new NullValueException("Employee " + employeeID + " was not registered yet.");
         }
-        employees.put(employeeID, EmployeeFactory.createDirector(employeeID, e.getName(), e.getBaseSalary(), degree, department));
+        employees.put(employeeID, EmployeeFactory.createDirector(employeeID, employee.getName(), employee.getBaseSalary(), degree, department));
         return promotionSuccessMessage(employeeID, "Director");
     }
 
     // For promotion where a previous degree exists, i.e the employee is already a Manager
     public String promoteToDirector(String employeeID, String department) throws Exception {
-        Manager e = (Manager) employees.remove(employeeID);
-        if (e == null) {
+        Manager employee = (Manager) employees.remove(employeeID);
+        if (employee == null) {
             throw new NullValueException("Employee " + employeeID + " was not registered yet.");
         }
-        employees.put(employeeID, EmployeeFactory.createDirector(employeeID, e.getName(), e.getBaseSalary(), e.getDegree(), department));
+        employees.put(employeeID, EmployeeFactory.createDirector(employeeID, employee.getName(), employee.getBaseSalary(), employee.getDegree(), department));
         return promotionSuccessMessage(employeeID, "Director");
     }
 
     public String promoteToIntern(String employeeID, int GPA) throws Exception {
-        Employee e = employees.remove(employeeID);
-        if (e == null) {
+        Employee employee = employees.remove(employeeID);
+        if (employee == null) {
             throw new NullValueException("Employee " + employeeID + " was not registered yet.");
         }
-        employees.put(employeeID, EmployeeFactory.createIntern(employeeID, e.getName(), e.getBaseSalary(), GPA));
+        employees.put(employeeID, EmployeeFactory.createIntern(employeeID, employee.getName(), employee.getBaseSalary(), GPA));
         return promotionSuccessMessage(employeeID, "Intern");
     }
 }
