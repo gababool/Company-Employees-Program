@@ -4,11 +4,11 @@ public class Manager extends Employee {
 
     public String degree;
 
-    public Manager(String ID, String name, double baseSalary, String degree) throws InvalidArgumentException, CannotBeEmptyException {
+    public Manager(String ID, String name, double baseSalary, String degree) throws Exception {
         super(ID, name, baseSalary);
 
         if (!(degree.equals("BSc") || degree.equals("MSc") || degree.equals("PhD"))) {
-            throw new InvalidArgumentException("Degree must be one of the options: BSc, MSc or PhD.");
+            throw new InvalidInputException("Degree must be one of the options: BSc, MSc or PhD.");
         }
 
         this.degree = degree;
@@ -16,7 +16,7 @@ public class Manager extends Employee {
         this.setGrossSalary(salary);
     }
 
-    protected double calculateSalary(double salary, String degree) throws InvalidArgumentException {
+    protected double calculateSalary(double salary, String degree) throws Exception {
         if (degree == "BSc") {
             return salary * 1.1;
         } else if (degree == "MSc") {
@@ -24,7 +24,7 @@ public class Manager extends Employee {
         } else if (degree == "PhD") {
             return salary * 1.35;
         } else {
-            throw new InvalidArgumentException(); // NEED THIS??
+            throw new InvalidInputException(); // NEED THIS??
         }
     }
 
@@ -33,9 +33,9 @@ public class Manager extends Employee {
         return String.format("%s %s's gross salary is %.2f SEK per month.", degree, name, getGrossSalary());
     }
 
-    public void setDegree(String degree) throws InvalidArgumentException {
+    public void setDegree(String degree) throws Exception {
         if (!(degree.equals("BSc") || degree.equals("MSc") || degree.equals("PhD")))
-            throw new InvalidArgumentException("Degree must be one of the options: BSc, MSc or PhD.");
+            throw new InvalidInputException("Degree must be one of the options: BSc, MSc or PhD.");
 
         this.degree = degree;
         this.grossSalary = calculateSalary(baseSalary, degree);

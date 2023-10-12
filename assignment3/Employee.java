@@ -8,16 +8,16 @@ public class Employee {
     protected double baseSalary;
     protected double grossSalary;
 
-    public Employee(String ID, String name, double baseSalary) throws CannotBeEmptyException, InvalidArgumentException {
+    public Employee(String ID, String name, double baseSalary) throws Exception {
 
         if (ID.trim() == ""){
-            throw new CannotBeEmptyException("ID cannot be blank.");
+            throw new EmptyArgumentException("ID cannot be blank.");
         }
         if (name.trim() == ""){
-            throw new CannotBeEmptyException("Name cannot be blank.");
+            throw new EmptyArgumentException("Name cannot be blank.");
         }
         if (baseSalary < 0){
-            throw new InvalidArgumentException("Salary must be greater than zero.");
+            throw new InvalidInputException("Salary must be greater than zero.");
         }
 
         this.EMPLOYEE_ID = ID;
@@ -28,7 +28,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return String.format("%s's gross salary is %.2f SEK per month.", name, this.getGrossSalary());
+        return String.format("%s's gross salary is %.2f SEK per month.", name, grossSalary);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Employee {
             return false;
         }
         Employee otherEmployee = (Employee) obj;
-        return this.EMPLOYEE_ID == otherEmployee.getEmployeeID();
+        return EMPLOYEE_ID == otherEmployee.getEmployeeID();
     }
 
     public static double truncateSalary(double salary) {
@@ -55,21 +55,21 @@ public class Employee {
     }
 
     public double getGrossSalary() {
-        return truncateSalary(this.grossSalary);
+        return truncateSalary(grossSalary);
     }
 
     public double getBaseSalary(){
-        return this.baseSalary;
+        return baseSalary;
     }
 
     public double getNetSalary() {
-        grossSalary = this.getGrossSalary();
+        grossSalary = getGrossSalary();
         return truncateSalary(grossSalary - grossSalary * 0.1);
     }
 
-    public void setName(String name) throws CannotBeEmptyException {
+    public void setName(String name) throws Exception {
         if (name.trim() == ""){
-            throw new CannotBeEmptyException("Name cannot be blank.");
+            throw new EmptyArgumentException("Name cannot be blank.");
         }
         this.name = name;
     }

@@ -4,7 +4,7 @@ public class Intern extends Employee {
 
     private int GPA;
 
-    public Intern(String ID, String name, double baseSalary, int GPA) throws CannotBeEmptyException, InvalidArgumentException {
+    public Intern(String ID, String name, double baseSalary, int GPA) throws Exception {
         super(ID, name, baseSalary);
         if (0 > GPA || GPA > 10) {
             throw new IllegalArgumentException(GPA + " outside range. Must be between 0-10.");
