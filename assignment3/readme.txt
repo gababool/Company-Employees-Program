@@ -1,7 +1,5 @@
 
-For this assignment we wanted to try out splitting up the work much more and only having responsibility for your
-designated tasks. We did however do a lot of debugging together and we did help each other by providing help
-when asked.
+For this assignment we wanted to try out splitting up the work much more and only having responsibility for our designated tasks. We did however do a lot of debugging together and we did help each other when necessary.
 
 Love
 - 1.2 The Company 
