@@ -58,7 +58,7 @@ public class Company {
         if (employees.containsKey(employeeID)) {
             throw new InvalidInputException("Cannot register. ID " + employeeID + " is already registered.");
         }
-        Employee manager = EmployeeFactory.createManager(employeeID, employeeName, grossSalary, degree);
+        Manager manager = EmployeeFactory.createManager(employeeID, employeeName, grossSalary, degree);
         employees.put(employeeID, manager);
         return successfullRegistrationMessage(employeeID);
     }
