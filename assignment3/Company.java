@@ -33,11 +33,11 @@ public class Company {
         return "Employee " + employeeID + " was registered successfully.";
     }
 
-    public String updateSuccessMessage(String employeeID) {
+    private String updateSuccessMessage(String employeeID) {
         return "Employee " + employeeID + " was updated successfully";
     }
 
-    public String promotionSuccessMessage(String employeeID, String employeeType) {
+    private String promotionSuccessMessage(String employeeID, String employeeType) {
         return employeeID + " promoted successfully to " + employeeType + ".";
     }
 
