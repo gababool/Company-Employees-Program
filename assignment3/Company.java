@@ -256,8 +256,7 @@ public class Company {
         return promotionSuccessMessage(employeeID, "Director");
     }
 
-    // For promotion where a previous degree exists, i.e the employee is already a
-    // Manager
+    // For promotion where a previous degree exists, i.e the employee is already a Manager
     public String promoteToDirector(String employeeID, String department) throws Exception {
         Manager employee = (Manager) employees.remove(employeeID);
         if (employee == null) {

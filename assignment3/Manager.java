@@ -16,16 +16,15 @@ public class Manager extends Employee {
         this.setGrossSalary(salary);
     }
 
-    protected double calculateSalary(double salary, String degree) throws Exception {
+    protected double calculateSalary(double salary, String degree) {
         if (degree == "BSc") {
-            return salary * 1.1;
+            salary *= 1.1;
         } else if (degree == "MSc") {
-            return salary * 1.2;
+            salary *= 1.2;
         } else if (degree == "PhD") {
-            return salary * 1.35;
-        } else {
-            throw new InvalidInputException(); // NEED THIS??
+            salary *= 1.35;
         }
+        return salary; 
     }
 
     @Override
