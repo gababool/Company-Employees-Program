@@ -29,7 +29,7 @@ Together:
 - Design Task (Factory Pattern)
 - 1.11 Promotion of employees
 
-Overall thoughts:
+Overall thoughts on Task 1.11:
 We we're a bit confused about this task, since it said that we were supposed to have four methods
 for the four possible positions, but also that there is no promotion to regular employee. We 
 still ended up with four methods since we overloaded promoteToDirector() but we are unsure if that
@@ -46,7 +46,7 @@ such as calculateGrossSalary(). However, realizing this design flaw so late into
 impossible for us to rewrite this in time. We by no means think it is horrible as is, but we do want it said
 that we know it could have been done a bit better if we hade more time.
 
-Comment from Martin:
+Comment from Martin on 1.11:
 I believe that the main limitation of inheritance in regards to these promotion methods is the fact
 that you cannot use the same promotion method for all types of employees. The reason for this is that
 some employees have attributes in common with the type they are being promoted to, in which case you
@@ -58,7 +58,7 @@ In summary, I believe we did solve the problem well in this case, but the trade-
 code harder to extend and maintain.
 
 
-Comment from Love:
+Comment from Love on 1.11:
 For task 1.11, handling the promotion of employees, we didn't follow exactly what the assignment told us to do.
 Instead, we save the object at the same time that we remove it from the HashMap. This is because the hashmap remove
 method partly removes the object from the hashmap, but also stores the value that we remove. Therefore, basically,
@@ -82,6 +82,6 @@ different parameters, but instead, we have to have four different methods. Anoth
 attribute is a calculation based on the type of employee. Therefore, we needed to implement a form of baseSalary, that is the one
 we do our calculations to calculate the actual grossSalary with. 
 
-Comment from Emma:
+Comment from Emma on 1.11:
 (Unfortunately could not make a comment because of personal matters)
 
