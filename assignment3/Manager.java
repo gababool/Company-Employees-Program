@@ -10,10 +10,7 @@ public class Manager extends Employee {
         if (!(degree.equals("BSc") || degree.equals("MSc") || degree.equals("PhD"))) {
             throw new InvalidInputException("Degree must be one of the options: BSc, MSc or PhD.");
         }
-
         this.degree = degree;
-        double salary = calculateSalary(baseSalary, degree);
-        this.setGrossSalary(salary);
     }
 
     protected double calculateSalary(double salary, String degree) {
@@ -43,4 +40,13 @@ public class Manager extends Employee {
         return degree;
     }
 
+    public double getGrossSalary(){
+        grossSalary = calculateSalary(baseSalary, degree);
+        return truncateSalary(grossSalary);
+    }
+
+    public double getBaseSalary(){
+        return this.baseSalary;
+    }
+        
 }

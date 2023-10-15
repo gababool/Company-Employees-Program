@@ -13,18 +13,16 @@ public class Director extends Manager {
         } 
         
         this.department = department;
-        double salary = calculateSalary(baseSalary, degree);
-        setGrossSalary(salary);
     }
 
     @Override
     public String toString(){
         return String.format("%s %s's gross salary is %.2f SEK per month. Dept: %s", 
-        degree, name, getSalary(), department);
+        degree, name, getGrossSalary(), department);
     }
 
     public double getNetSalary() {
-        double totalSalary = getSalary();
+        double totalSalary = getGrossSalary();
         if(totalSalary > 50000) {
             return totalSalary - (30000 * 0.2) - ((totalSalary - 30000) * 0.4);
         } else if(totalSalary >= 30000) {
@@ -42,7 +40,8 @@ public class Director extends Manager {
         }
     }
 
-    public double getSalary(){
+    public double getGrossSalary(){
+        grossSalary = calculateSalary(baseSalary, degree);
         return truncateSalary(grossSalary + DIRECTOR_BONUS);
     }
     

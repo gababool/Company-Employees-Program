@@ -23,7 +23,6 @@ public class Employee {
         this.EMPLOYEE_ID = ID;
         this.name = name;
         this.baseSalary = baseSalary;
-        setGrossSalary(baseSalary);
     }
 
     @Override
@@ -55,7 +54,7 @@ public class Employee {
     }
 
     public double getGrossSalary() {
-        return truncateSalary(grossSalary);
+        return truncateSalary(baseSalary);
     }
 
     public double getBaseSalary(){
@@ -85,7 +84,7 @@ public class Employee {
         if (salaryAmount <= 0){
             throw new InvalidInputException("Salary must be greater than zero.");
         }
-        this.grossSalary = truncateSalary(salaryAmount);
+        this.baseSalary = truncateSalary(salaryAmount);
     }
 
 }

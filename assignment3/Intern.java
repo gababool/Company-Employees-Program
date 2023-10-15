@@ -13,7 +13,7 @@ public class Intern extends Employee {
         }
 
         this.GPA = GPA;
-        setGrossSalaryBasedOnGPA(this.GPA, this.baseSalary);
+        calculateInternSalary(this.GPA, this.baseSalary);
     }
 
     public void setGPA(int GPA) throws Exception {
@@ -21,15 +21,20 @@ public class Intern extends Employee {
             throw new InvalidInputException(GPA + " outside range. Must be between 0-10.");
         }
         this.GPA = GPA;
-        setGrossSalaryBasedOnGPA(GPA, baseSalary);
     }
 
-    private void setGrossSalaryBasedOnGPA(int GPA, double baseSalary) {
+    private double calculateInternSalary(int GPA, double salary) {
         if (this.GPA <= 5) {
-            this.grossSalary = 0.0;
+            salary = 0.0;
         } else if (GPA >= 8) {
-            this.grossSalary = baseSalary + internBonus;
+            salary = baseSalary + internBonus;
         }
+        return salary;
+    }
+
+    public double getGrossSalary(){
+        double grossSalary = calculateInternSalary(GPA, baseSalary);
+        return truncateSalary(grossSalary);
     }
 
     @Override
