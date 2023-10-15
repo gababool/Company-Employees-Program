@@ -33,10 +33,10 @@ Overall thoughts:
 We we're a bit confused about this task, since it said that we were supposed to have four methods
 for the four possible positions, but also that there is no promotion to regular employee. We 
 still ended up with four methods since we overloaded promoteToDirector() but we are unsure if that
-is what the assignment meant by saying four methods. We also deviated a little bit from 
-the summary of the task by firstly retrieving and removing the employee simultaneously and also by
-not saving the information in variables, since we use use the getters at creation instead. We do not
-however believe this negatively affects the functionality and readability of the method.
+is what the assignment meant by saying four methods. We also deviated a little bit from the summary of the 
+task by firstly retrieving and removing the employee simultaneously by calling employees.remove() and also 
+by not saving the information in variables, since we use use the getters at creation instead. We do 
+not however believe this negatively affects the functionality and readability of the method.
 
 Comment from Martin:
 I believe that the main limitation of inheritance in regards to these promotion methods is the fact
