@@ -36,7 +36,15 @@ still ended up with four methods since we overloaded promoteToDirector() but we 
 is what the assignment meant by saying four methods. We also deviated a little bit from the summary of the 
 task by firstly retrieving and removing the employee simultaneously by calling employees.remove() and also 
 by not saving the information in variables, since we use use the getters at creation instead. We do 
-not however believe this negatively affects the functionality and readability of the method.
+not however believe this negatively affects the functionality and readability of the method. 
+
+Lastly, we do want to mention that we are not 100% satisfied with out implementation of baseSalary and grossSalary 
+and how that problem which arised during task 1.11 was solved. We realize that the code can be written to not have
+an attribute for both baseSalary and grossSalary, but instead let getGrossSalary() exist in the different 
+employee classes and return a modified baseSalary by performing the necessary calculations with a method,
+such as calculateGrossSalary(). However, realizing this design flaw so late into the assignment made it 
+impossible for us to rewrite this in time. We by no means think it is horrible as is, but we do want it said
+that we know it could have been done a bit better if we hade more time.
 
 Comment from Martin:
 I believe that the main limitation of inheritance in regards to these promotion methods is the fact
