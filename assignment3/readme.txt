@@ -44,7 +44,7 @@ that you cannot use the same promotion method for all types of employees. The re
 some employees have attributes in common with the type they are being promoted to, in which case you
 can just use a getter to receive those, but others employess do not and need them as arguments. 
 In our case we used overloading to solve this issue, which works fine, but significanly worsens the 
-extendability of the code. For every employee we add we might have to write several overloaded methods,
+extendability of the code. For every employee type we add we might have to write several overloaded methods,
 based on if they share some attributes with one type of employee and some attribute with another.
 In summary, I believe we did solve the problem well in this case, but the trade-off lies in making the
 code harder to extend and maintain.
